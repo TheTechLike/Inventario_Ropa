@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Inventario_Base.Datos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,7 @@ namespace Inventario_Base
         public Agregar()
         {
             InitializeComponent();
+
         }
 
         private void textBox9_TextChanged(object sender, EventArgs e)
@@ -22,9 +24,11 @@ namespace Inventario_Base
 
         }
 
-        private void Agregar_Load(object sender, EventArgs e)
+        private async void Agregar_Load(object sender, EventArgs e)
         {
-
+            Consultar consultar = new Consultar();
+            dateTimePicker1.Value = DateTime.Now;
+            textBox1.Text =  Convert.ToString(await consultar.UltimoObjeto()+1  );
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
@@ -34,7 +38,48 @@ namespace Inventario_Base
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Marca marca = new Marca();
+            marca.Show();
+        }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void comboBox1_DropDown(object sender, EventArgs e)
+        {
+            Consultar consultar = new Consultar();
+
+
+            comboBox1.DisplayMember = "Nombre";
+            comboBox1.ValueMember = "MarcaID";
+            comboBox1.DataSource = await consultar.Marcas();
+        }
+
+        private async void comboBox2_DropDown(object sender, EventArgs e)
+        {
+            Consultar consultar = new Consultar();
+
+
+            comboBox2.DisplayMember = "Nombre";
+            comboBox2.ValueMember = "TipoID";
+            comboBox2.DataSource = await consultar.Tipos();
         }
     }
 }

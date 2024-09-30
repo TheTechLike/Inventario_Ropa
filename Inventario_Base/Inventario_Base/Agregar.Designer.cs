@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -44,6 +45,7 @@
             textBox7 = new TextBox();
             textBox9 = new TextBox();
             comboBox1 = new ComboBox();
+            marcaBindingSource = new BindingSource(components);
             comboBox2 = new ComboBox();
             comboBox3 = new ComboBox();
             numericUpDown1 = new NumericUpDown();
@@ -51,7 +53,10 @@
             button1 = new Button();
             button2 = new Button();
             button3 = new Button();
+            inventarioBindingSource = new BindingSource(components);
+            ((System.ComponentModel.ISupportInitialize)marcaBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)inventarioBindingSource).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -169,7 +174,7 @@
             textBox1.Enabled = false;
             textBox1.Font = new Font("Segoe UI", 12F);
             textBox1.Location = new Point(250, 128);
-            textBox1.Margin = new Padding(4, 4, 4, 4);
+            textBox1.Margin = new Padding(4);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(200, 29);
             textBox1.TabIndex = 1;
@@ -178,7 +183,7 @@
             // 
             textBox4.Font = new Font("Segoe UI", 12F);
             textBox4.Location = new Point(1020, 226);
-            textBox4.Margin = new Padding(4, 4, 4, 4);
+            textBox4.Margin = new Padding(4);
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(200, 29);
             textBox4.TabIndex = 1;
@@ -187,7 +192,7 @@
             // 
             textBox5.Font = new Font("Segoe UI", 12F);
             textBox5.Location = new Point(251, 226);
-            textBox5.Margin = new Padding(4, 4, 4, 4);
+            textBox5.Margin = new Padding(4);
             textBox5.Name = "textBox5";
             textBox5.Size = new Size(200, 29);
             textBox5.TabIndex = 1;
@@ -196,7 +201,7 @@
             // 
             textBox7.Font = new Font("Segoe UI", 12F);
             textBox7.Location = new Point(250, 323);
-            textBox7.Margin = new Padding(4, 4, 4, 4);
+            textBox7.Margin = new Padding(4);
             textBox7.Name = "textBox7";
             textBox7.Size = new Size(200, 29);
             textBox7.TabIndex = 1;
@@ -205,7 +210,7 @@
             // 
             textBox9.Font = new Font("Segoe UI", 12F);
             textBox9.Location = new Point(1020, 323);
-            textBox9.Margin = new Padding(4, 4, 4, 4);
+            textBox9.Margin = new Padding(4);
             textBox9.Name = "textBox9";
             textBox9.Size = new Size(200, 29);
             textBox9.TabIndex = 1;
@@ -214,20 +219,28 @@
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Nike", "Addidas", "CCUCHI" });
             comboBox1.Location = new Point(636, 128);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(200, 29);
             comboBox1.TabIndex = 3;
+            comboBox1.DropDown += comboBox1_DropDown;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            // 
+            // marcaBindingSource
+            // 
+            marcaBindingSource.DataMember = "Marca";
+            marcaBindingSource.DataSource = typeof(DataSet1);
             // 
             // comboBox2
             // 
+            comboBox2.DisplayMember = "TipoID";
             comboBox2.FormattingEnabled = true;
-            comboBox2.Items.AddRange(new object[] { "Zapatos", "Camiseta", "Camisa", "Pantalon" });
             comboBox2.Location = new Point(1020, 128);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(200, 29);
             comboBox2.TabIndex = 4;
+            comboBox2.ValueMember = "TipoID";
+            comboBox2.DropDown += comboBox2_DropDown;
             // 
             // comboBox3
             // 
@@ -251,7 +264,7 @@
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(313, 29);
             dateTimePicker1.TabIndex = 7;
-            dateTimePicker1.Value = new DateTime(2024, 9, 27, 13, 22, 14, 0);
+            dateTimePicker1.Value = new DateTime(2024, 9, 10, 0, 0, 0, 0);
             // 
             // button1
             // 
@@ -273,7 +286,7 @@
             button2.TabIndex = 8;
             button2.Text = "Aceptar";
             button2.UseVisualStyleBackColor = false;
-            button2.Click += button1_Click;
+            button2.Click += button2_Click;
             // 
             // button3
             // 
@@ -285,13 +298,20 @@
             button3.TabIndex = 8;
             button3.Text = "Cancelar";
             button3.UseVisualStyleBackColor = false;
-            button3.Click += button1_Click;
+            button3.Click += button3_Click;
+            // 
+            // inventarioBindingSource
+            // 
+            inventarioBindingSource.DataMember = "Inventario";
+            inventarioBindingSource.DataSource = typeof(DataSet1);
             // 
             // Agregar
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSize = true;
             ClientSize = new Size(1339, 683);
+            ControlBox = false;
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
@@ -316,11 +336,15 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Font = new Font("Segoe UI", 12F);
-            Margin = new Padding(4, 4, 4, 4);
+            HelpButton = true;
+            Margin = new Padding(4);
             Name = "Agregar";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Agregar";
             Load += Agregar_Load;
+            ((System.ComponentModel.ISupportInitialize)marcaBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)inventarioBindingSource).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -350,5 +374,7 @@
         private Button button1;
         private Button button2;
         private Button button3;
+        private BindingSource inventarioBindingSource;
+        private BindingSource marcaBindingSource;
     }
 }
