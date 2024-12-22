@@ -6,120 +6,55 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Inventario_Base.Datos;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 
 namespace Inventario_Base.Datos
 {
     internal class Consultar
     {
         private string conect = Conexion.conectionstring;
+        private static readonly HttpClient client = new HttpClient();
 
-        public async Task<List<Marca>> Marcas()
+        public async Task<List<MInventariou>> GetInventario(string? buscar)
         {
-            var lista = new List<Marca>();
-            using (var con = new SqlConnection(conect))
-            {
-                using (var cmd = new SqlCommand("Select * from Marca", con))
-                {
-                    await con.OpenAsync();
-                    cmd.CommandType = System.Data.CommandType.Text;
-                    using (var item = await cmd.ExecuteReaderAsync())
-                    {
-                        while (await item.ReadAsync())
-                        {
-                            var marca = new Marca();
-
-                            marca.MarcaID = (int)item[0];
-                            marca.Nombre = (string)item[1];
-                            lista.Add(marca);
-
-                        }
-                    }
-
-                }
-            }
-            return lista;
+          
+            HttpResponseMessage response = await client.GetAsync(conect+"inventariou/"+buscar);
+            response.EnsureSuccessStatusCode();
+            string responsebody = await response.Content.ReadAsStringAsync();
+            Console.WriteLine(responsebody);
+           List<MInventariou> list = JsonSerializer.Deserialize<List<MInventariou>>(responsebody);
+            return list;
         }
 
-        public async Task<List<Tipo>> Tipos()
+        public async Task<List<MMarca>> GetMarcas()
         {
-            var lista = new List<Tipo>();
-            using (var con = new SqlConnection(conect))
-            {
-                using (var cmd = new SqlCommand("Select * from Tipo", con))
-                {
-                    await con.OpenAsync();
-                    cmd.CommandType = System.Data.CommandType.Text;
-                    using (var item = await cmd.ExecuteReaderAsync())
-                    {
-                        while (await item.ReadAsync())
-                        {
-                            var tipo = new Tipo();
-                            tipo.TipoID = (int)item[0];
-                            tipo.Nombre = (string)item[1];
-                            lista.Add(tipo);
-                        }
-                    }
-                }
-            }
-            return lista;
+            HttpResponseMessage response = await client.GetAsync(conect + "marca");
+            response.EnsureSuccessStatusCode();
+            string responsebody = await response.Content.ReadAsStringAsync();
+            Console.WriteLine(responsebody);
+            List<MMarca> list = JsonSerializer.Deserialize<List<MMarca>>(responsebody);
+            return list;
+        }
+        public async Task<List<MTipo>> GetTipo()
+        {
+            HttpResponseMessage response = await client.GetAsync(conect + "tipo");
+            response.EnsureSuccessStatusCode();
+            string responsebody = await response.Content.ReadAsStringAsync();
+            Console.WriteLine(responsebody);
+            List<MTipo> list = JsonSerializer.Deserialize<List<MTipo>>(responsebody);
+            return list;
+        }
+        public async Task<List<MInventario>> GetLastInventario()
+        {
+
+            HttpResponseMessage response = await client.GetAsync(conect + "inventariou/last");
+            response.EnsureSuccessStatusCode();
+            string responsebody = await response.Content.ReadAsStringAsync();
+            Console.WriteLine(responsebody);
+            List<MInventario> list = JsonSerializer.Deserialize<List<MInventario>>(responsebody);
+            return list;
         }
 
-        public async Task<int> UltimoObjeto()
-        {
-            int id = 0;
-            using (var sql = new SqlConnection(conect))
-            {
-                using (var cmd = new SqlCommand("select top 1 objetoid from Inventario order by objetoid desc", sql))
-                {
-                    await sql.OpenAsync();
-                    cmd.CommandType = CommandType.Text;
-                    using (var item = await cmd.ExecuteReaderAsync())
-                    {
-                        while (await item.ReadAsync())
-                        {
-                            id = (int)item[0];
-                        }
-                    }
-                }
-            }
-            return id;
-        }
-
-        public async Task<List<InventarioM>> Inventarios(string buscar)
-        {
-            var lista = new List<InventarioM>();
-            using (var sql = new SqlConnection(conect))
-            {
-                using (var cmd = new SqlCommand("buscarINV", sql))
-                {
-                    await sql.OpenAsync();
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("Buscar", buscar);
-                    using (var item = await cmd.ExecuteReaderAsync())
-                    {
-                        while (await item.ReadAsync())
-                        {
-                            var inventario = new InventarioM();
-                            inventario.ObjetoID = (int)item[0];
-                            inventario.Marca = (string)item[1];
-                            inventario.Tipo = (string)item[2];
-                            inventario.Nombre = (string)item[3];
-                            inventario.Size = (string)item[4];
-                            inventario.Color = (string)item[5];
-                            inventario.Precio = (decimal)item[6];
-                            inventario.Cantidad = (int)item[7];
-                            inventario.Sector = (string)item[8];
-                            inventario.Pasillo = (string)item[9];
-                            inventario.Fila = (string)item[10];
-                            inventario.FechaAquisicion = (DateTime)item[11];
-                            inventario.FechaActualizacion = (DateTime)item[12];
-                            lista.Add(inventario);
-
-                        }
-                    }
-                }
-            }
-            return lista;
-        }
     }
 }

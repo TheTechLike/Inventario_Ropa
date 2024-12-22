@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Inventario_Base.Datos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,21 +25,33 @@ namespace Inventario_Base
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
-            string usuario = textBox1.Text;
-            string contra = textBox2.Text;
+            MLogin mLogin = new MLogin();
+           mLogin.User = textBox1.Text;
+            mLogin.Password = textBox2.Text;
 
-            if (usuario == "admin" && contra == "1234")
+            if (mLogin.User == "admin" && mLogin.Password == "1234")
             {
                 this.Close();
                 main.Enabled = true;
                 main.Show();
                 
             }
-            else
+            else if(mLogin.User != "admin" )
             {
-                MessageBox.Show("Usuario/Contraseña incorrecta");
+                var function = new DLogin();
+                if (await function.GetLogin(mLogin) != "0")
+                {
+                    this.Close();
+                    main.Enabled = true;
+                    main.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Usuario/Contraseña incorrecta");
+                }
+
             }
 
         }

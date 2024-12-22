@@ -8,7 +8,7 @@ namespace Inventario_Base.Datos
 {
    internal class Conexion
     {
-        public static string conectionstring = "Data Source=GABRIEL-LEBRON;Initial Catalog=\"Inventario Ropa\";Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
+        public static string conectionstring = "http://localhost:1025/api/";
 
             
             
