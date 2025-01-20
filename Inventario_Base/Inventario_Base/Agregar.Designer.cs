@@ -43,7 +43,6 @@
             textBox4 = new TextBox();
             textBox5 = new TextBox();
             textBox7 = new TextBox();
-            textBox9 = new TextBox();
             comboBox1 = new ComboBox();
             marcaBindingSource = new BindingSource(components);
             comboBox2 = new ComboBox();
@@ -54,6 +53,7 @@
             button2 = new Button();
             button3 = new Button();
             inventarioBindingSource = new BindingSource(components);
+            comboBox4 = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)marcaBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)inventarioBindingSource).BeginInit();
@@ -206,16 +206,6 @@
             textBox7.Size = new Size(200, 29);
             textBox7.TabIndex = 1;
             // 
-            // textBox9
-            // 
-            textBox9.Font = new Font("Segoe UI", 12F);
-            textBox9.Location = new Point(1020, 323);
-            textBox9.Margin = new Padding(4);
-            textBox9.Name = "textBox9";
-            textBox9.Size = new Size(200, 29);
-            textBox9.TabIndex = 1;
-            textBox9.TextChanged += textBox9_TextChanged;
-            // 
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
@@ -305,6 +295,17 @@
             inventarioBindingSource.DataMember = "Inventario";
             inventarioBindingSource.DataSource = typeof(DataSet1);
             // 
+            // comboBox4
+            // 
+            comboBox4.FormattingEnabled = true;
+            comboBox4.Items.AddRange(new object[] { "XS", "S", "M", "L", "XL", "XXL" });
+            comboBox4.Location = new Point(1020, 326);
+            comboBox4.Name = "comboBox4";
+            comboBox4.Size = new Size(200, 29);
+            comboBox4.TabIndex = 9;
+            comboBox4.DropDown += comboBox4_DropDown;
+            comboBox4.SelectedIndexChanged += comboBox4_SelectedIndexChanged;
+            // 
             // Agregar
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
@@ -312,6 +313,7 @@
             AutoSize = true;
             ClientSize = new Size(1339, 683);
             ControlBox = false;
+            Controls.Add(comboBox4);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
@@ -320,7 +322,6 @@
             Controls.Add(comboBox3);
             Controls.Add(comboBox2);
             Controls.Add(comboBox1);
-            Controls.Add(textBox9);
             Controls.Add(textBox7);
             Controls.Add(textBox5);
             Controls.Add(textBox4);
@@ -365,7 +366,6 @@
         private TextBox textBox4;
         private TextBox textBox5;
         private TextBox textBox7;
-        private TextBox textBox9;
         private ComboBox comboBox1;
         private ComboBox comboBox2;
         private ComboBox comboBox3;
@@ -376,5 +376,6 @@
         private Button button3;
         private BindingSource inventarioBindingSource;
         private BindingSource marcaBindingSource;
+        private ComboBox comboBox4;
     }
 }

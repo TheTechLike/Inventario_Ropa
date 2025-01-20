@@ -29,8 +29,8 @@ namespace Inventario_Base
             Consultar consultar = new Consultar();
             dateTimePicker1.Value = DateTime.Now;
             var id = await consultar.GetLastInventario();
-                textBox1.Text =( id[0].ObjetoID + 1).ToString();
-                    
+            textBox1.Text = (id[0].ObjetoID + 1).ToString();
+
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
@@ -81,7 +81,21 @@ namespace Inventario_Base
 
             comboBox2.DisplayMember = "Nombre";
             comboBox2.ValueMember = "TipoID";
-            comboBox2.DataSource =await consultar.GetTipo();
+            comboBox2.DataSource = await consultar.GetTipo();
+        }
+
+        private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        private async void comboBox4_DropDown(object sender, EventArgs e)
+        {
+            Consultar consultar = new Consultar();
+
+
+            comboBox4.DisplayMember = "Pasillo";
+            comboBox4.ValueMember = "UbicacionID";
+            comboBox4.DataSource = await consultar.GetUbi();
         }
     }
 }

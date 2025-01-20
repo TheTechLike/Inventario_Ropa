@@ -56,5 +56,26 @@ namespace Inventario_Base.Datos
             return list;
         }
 
+        public async Task<List<MUbicacion>> GetUbi()
+        {
+            HttpResponseMessage response = await client.GetAsync(conect + "ubicacion");
+            response.EnsureSuccessStatusCode();
+            string responsebody = await response.Content.ReadAsStringAsync();
+            Console.WriteLine(responsebody);
+
+            // Deserializar la lista original
+            List<MUbicacion> originalList = JsonSerializer.Deserialize<List<MUbicacion>>(responsebody);
+
+            // Crear una nueva lista con el formato requerido
+            List<MUbicacion> formattedList = originalList.Select(ubi => new MUbicacion
+            {
+                UbicacionID = ubi.UbicacionID,
+                Pasillo = $"{ubi.Pasillo}-{ubi.Sector}-{ubi.Fila}"
+            }).ToList();
+
+            return formattedList;
+        }
+
+
     }
 }

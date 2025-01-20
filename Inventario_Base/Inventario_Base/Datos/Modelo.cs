@@ -54,7 +54,7 @@ namespace Inventario_Base.Datos
         [JsonPropertyName("fechaAquisicion")]
         public DateTime FechaAquisicion { get; set; }
         [JsonPropertyName("fechaActualizacion")]
-        public DateTime FechaActualizacion { get; set; }
+        public DateTime? FechaActualizacion { get; set; }
     }
     internal class MInventariou
     {
@@ -95,6 +95,18 @@ namespace Inventario_Base.Datos
         public DateTime FechaAquisicion { get; set; }
 
         [JsonPropertyName("fechaActualizacion")]
-        public DateTime FechaActualizacion { get; set; }
+        public DateTime? FechaActualizacion { get; set; }
+    }
+
+    internal class MUbicacion
+    {
+        [JsonPropertyName("ubicacionID")]
+        public int UbicacionID { get; set; }
+        [JsonPropertyName("pasillo")]
+        public string Pasillo { get; set; }
+        [JsonPropertyName("sector")]
+        public string Sector { get; set; }
+        [JsonPropertyName("fila")]
+        public string Fila { get; set; }
     }
 }
