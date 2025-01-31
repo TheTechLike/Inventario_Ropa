@@ -44,9 +44,13 @@ namespace Inventario_Base
             marca.Show();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private async void button2_Click(object sender, EventArgs e)
         {
+            DialogResult result = MessageBox.Show("Seguro que quieres agregarlo?", "Confirmacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            if (result == DialogResult.Yes)
+            {
 
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -97,5 +101,31 @@ namespace Inventario_Base
             comboBox4.ValueMember = "UbicacionID";
             comboBox4.DataSource = await consultar.GetUbi();
         }
+
+
+
+       
+
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;  // Bloquea la tecla no permitida
+                ShowWarning("Solo se permiten números y un punto decimal.");
+            }
+
+            // Evitar más de un punto decimal
+            if (e.KeyChar == '.' && textBox2.Text.Contains("."))
+            {
+                e.Handled = true;
+                ShowWarning("Solo se permite un punto decimal.");
+            }
+        }
+        private void ShowWarning(string message)
+        {
+            // Muestra el mensaje de advertencia utilizando un ToolTip
+            toolTip1.Show(message, textBox2, 0, -20, 2000);  // Muestra el mensaje 20 píxeles arriba del TextBox durante 2 segundos
+        }
     }
+    
 }
