@@ -32,6 +32,7 @@
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             inventarioBindingSource = new BindingSource(components);
             splitContainer1 = new SplitContainer();
+            button1 = new Button();
             label1 = new Label();
             textBox1 = new TextBox();
             dataGridView1 = new DataGridView();
@@ -57,6 +58,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            splitContainer1.Panel1.Controls.Add(button1);
             splitContainer1.Panel1.Controls.Add(label1);
             splitContainer1.Panel1.Controls.Add(textBox1);
             // 
@@ -66,6 +68,22 @@
             splitContainer1.Size = new Size(1336, 716);
             splitContainer1.SplitterDistance = 100;
             splitContainer1.TabIndex = 0;
+            // 
+            // button1
+            // 
+            button1.BackColor = SystemColors.Control;
+            button1.Dock = DockStyle.Right;
+            button1.FlatAppearance.BorderSize = 0;
+            button1.Font = new Font("Segoe UI", 19F);
+            button1.ForeColor = Color.DodgerBlue;
+            button1.Location = new Point(1286, 0);
+            button1.Margin = new Padding(0);
+            button1.Name = "button1";
+            button1.Size = new Size(50, 100);
+            button1.TabIndex = 3;
+            button1.Text = "🔃";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // label1
             // 
@@ -114,6 +132,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSize = true;
             ClientSize = new Size(1336, 716);
             ControlBox = false;
             Controls.Add(splitContainer1);
@@ -139,5 +158,6 @@
         private DataGridView dataGridView1;
         private TextBox textBox1;
         private Label label1;
+        private Button button1;
     }
 }

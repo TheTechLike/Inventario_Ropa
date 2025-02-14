@@ -42,13 +42,20 @@ namespace Inventario_Base
         private async void Buscar_Load(object sender, EventArgs e)
 
         {
-           
-            dataGridView1.DataSource = await consultar.GetInventario(null);
+
+            dataGridView1.DataSource = await consultar.GetInventario(string.Empty);
+            dataGridView1.Refresh();
         }
 
         private async void textBox1_TextChanged(object sender, EventArgs e)
         {
             dataGridView1.DataSource = await consultar.GetInventario(textBox1.Text);
+        }
+
+        private  void button1_Click(object sender, EventArgs e)
+        {
+            Buscar_Load(sender, e);
+           
         }
     }
 }
