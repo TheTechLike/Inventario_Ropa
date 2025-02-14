@@ -223,15 +223,18 @@
             comboBox2.TabIndex = 4;
             comboBox2.ValueMember = "TipoID";
             comboBox2.DropDown += comboBox2_DropDown;
+            comboBox2.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
             // 
             // comboBox3
             // 
+            comboBox3.Enabled = false;
             comboBox3.FormattingEnabled = true;
             comboBox3.Items.AddRange(new object[] { "XS", "S", "M", "L", "XL", "XXL" });
             comboBox3.Location = new Point(636, 226);
             comboBox3.Name = "comboBox3";
             comboBox3.Size = new Size(200, 29);
             comboBox3.TabIndex = 5;
+            comboBox3.SelectedIndexChanged += comboBox3_SelectedIndexChanged;
             // 
             // numericUpDown1
             // 

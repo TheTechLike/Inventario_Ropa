@@ -76,7 +76,17 @@ namespace Inventario_Base.Datos
             return formattedList;
         }
 
-        
+        public async Task<List<MSize>> GetSize(int TipoID)
+        {
+            HttpResponseMessage response = await client.GetAsync(conect + "size"+"/"+TipoID);
+            response.EnsureSuccessStatusCode();
+            string responsebody = await response.Content.ReadAsStringAsync();
+            Console.WriteLine(responsebody);
+            List<MSize> list = JsonSerializer.Deserialize<List<MSize>>(responsebody);
+            return list;
+        }
+
+
 
     }
 }

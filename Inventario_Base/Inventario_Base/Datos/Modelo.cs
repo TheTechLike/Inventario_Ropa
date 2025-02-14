@@ -41,8 +41,8 @@ namespace Inventario_Base.Datos
         public int TipoID { get; set; }
         [JsonPropertyName("nombre")]
         public string Nombre { get; set; }
-        [JsonPropertyName("size")]
-        public string Size { get; set; }
+        [JsonPropertyName("sizeID")]
+        public int SizeID { get; set; }
         [JsonPropertyName("color")]
         public string Color { get; set; }
         [JsonPropertyName("precio")]
@@ -109,4 +109,13 @@ namespace Inventario_Base.Datos
         [JsonPropertyName("fila")]
         public string Fila { get; set; }
     }
+    internal class MSize
+    {
+        [JsonPropertyName("sizeID")]
+        public int SizeID { get; set; }
+        [JsonPropertyName("tipoID")]
+        public int TipoID { get; set; }
+        [JsonPropertyName("size")]
+        public string Size { get; set; }
+    }                                                                   
 }
