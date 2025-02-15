@@ -37,44 +37,54 @@ namespace Inventario_Base
         {
             var function = new Insertar();
             DialogResult result = MessageBox.Show("Seguro que quieres agregarlo?", "Confirmacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-            if (result == DialogResult.OK)
+            try
             {
-                var minventario = new MInventario
+                if (result == DialogResult.OK)
                 {
-                    ObjetoID = Convert.ToInt32(textBox1.Text),
-                    Nombre = textBox5.Text,
-                    MarcaID = Convert.ToInt32(comboBox1.SelectedValue),
-                    TipoID = Convert.ToInt32(comboBox2.SelectedValue),
-                    SizeID = Convert.ToInt32(comboBox3.SelectedValue),
-                    Color = textBox4.Text,
-                    Cantidad = Convert.ToInt32(numericUpDown1.Value),
-                    Precio = Convert.ToDecimal(textBox2.Text),
-                    FechaAquisicion = dateTimePicker1.Value,
-                    UbicacionID = Convert.ToInt32(comboBox4.SelectedValue)
-                };
 
-                try
-                {
-                    var response = await function.PostInv(minventario);
-                    var jsonResponse = JsonSerializer.Deserialize<JsonElement>(response);
-
-                    bool isSuccess = jsonResponse.GetProperty("response").GetBoolean();
-                    string message = jsonResponse.GetProperty("message").GetString();
-
-                    if (isSuccess)
+                    var minventario = new MInventario
                     {
-                        MessageBox.Show("Agregado con éxito");
-                        LimpiarControles();
+                        ObjetoID = Convert.ToInt32(textBox1.Text),
+                        Nombre = textBox5.Text,
+                        MarcaID = Convert.ToInt32(comboBox1.SelectedValue),
+                        TipoID = Convert.ToInt32(comboBox2.SelectedValue),
+                        SizeID = Convert.ToInt32(comboBox3.SelectedValue),
+                        Color = textBox4.Text,
+                        Cantidad = Convert.ToInt32(numericUpDown1.Value),
+                        Precio = Convert.ToDecimal(textBox2.Text),
+                        FechaAquisicion = dateTimePicker1.Value,
+                        UbicacionID = Convert.ToInt32(comboBox4.SelectedValue)
+                    };
+
+
+
+                    try
+                    {
+                        var response = await function.PostInv(minventario);
+                        var jsonResponse = JsonSerializer.Deserialize<JsonElement>(response);
+
+                        bool isSuccess = jsonResponse.GetProperty("response").GetBoolean();
+                        string message = jsonResponse.GetProperty("message").GetString();
+
+                        if (isSuccess)
+                        {
+                            MessageBox.Show("Agregado con éxito");
+                            LimpiarControles();
+                        }
+                        else
+                        {
+                            MessageBox.Show($"Error al agregar: {message}");
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        MessageBox.Show($"Error al agregar: {message}");
+                        MessageBox.Show(ex.Message);
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al agregar: " + ex.Message);
             }
         }
 
@@ -190,13 +200,13 @@ namespace Inventario_Base
 
             comboBox3Resfrech();
             comboBox3.Enabled = true;
-         
-           
+
+
 
 
         }
 
-     
+
     }
 }
 

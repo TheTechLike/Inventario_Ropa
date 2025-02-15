@@ -104,6 +104,7 @@
             button4.TabIndex = 3;
             button4.Text = "📝Actualizar prenda";
             button4.UseVisualStyleBackColor = false;
+            button4.Click += button4_Click;
             // 
             // menuStrip1
             // 
@@ -187,6 +188,7 @@
             // splitContainer1
             // 
             splitContainer1.Dock = DockStyle.Fill;
+            splitContainer1.IsSplitterFixed = true;
             splitContainer1.Location = new Point(0, 24);
             splitContainer1.Name = "splitContainer1";
             splitContainer1.Orientation = Orientation.Horizontal;

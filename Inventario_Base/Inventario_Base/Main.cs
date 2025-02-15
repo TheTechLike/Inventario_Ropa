@@ -34,14 +34,26 @@ namespace Inventario_Base
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Buscar inventario   =   new Buscar();
+            Buscar inventario = new Buscar();
             if (this.splitContainer1.Panel2.Controls.Count > 0)
                 this.splitContainer1.Panel2.Controls.RemoveAt(0);
 
             inventario.TopLevel = false;
             this.splitContainer1.Panel2.Controls.Add(inventario);
             this.splitContainer1.Panel2.Tag = inventario;
-            inventario.Show();  
+            inventario.Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Actualizar inventario = new Actualizar();
+            if (this.splitContainer1.Panel2.Controls.Count > 0)
+                this.splitContainer1.Panel2.Controls.RemoveAt(0);
+
+            inventario.TopLevel = false;
+            this.splitContainer1.Panel2.Controls.Add(inventario);
+            this.splitContainer1.Panel2.Tag = inventario;
+            inventario.Show();
         }
     }
 }

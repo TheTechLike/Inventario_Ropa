@@ -23,5 +23,13 @@ namespace Inventario_Base.Datos
             HttpResponseMessage response = await client.PostAsync(conect + "InventarioU",content);
             return await response.Content.ReadAsStringAsync();
         }
+
+        public async Task<string> PutInv(MInventario parametros)
+        {
+            var json = JsonSerializer.Serialize(parametros);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await client.PutAsync(conect + "InventarioU", content);
+            return await response.Content.ReadAsStringAsync();
+        }
     }
 }

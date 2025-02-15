@@ -62,3 +62,4 @@ C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario
 C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\bin\Debug\net8.0-windows\runtimes\win\lib\net8.0\System.Runtime.Caching.dll
 C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\obj\Debug\net8.0-windows\Inventar.6DAEEBD2.Up2Date
 C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\obj\Debug\net8.0-windows\Inventario_Base.Buscar.resources
+C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\obj\Debug\net8.0-windows\Inventario_Base.Actualizar.resources
