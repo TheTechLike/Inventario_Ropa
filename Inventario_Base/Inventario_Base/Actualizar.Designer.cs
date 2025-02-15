@@ -148,6 +148,7 @@
             // 
             // comboBox3
             // 
+            comboBox3.Enabled = false;
             comboBox3.Font = new Font("Tahoma", 9.75F, FontStyle.Bold);
             comboBox3.FormattingEnabled = true;
             comboBox3.Location = new Point(125, 199);

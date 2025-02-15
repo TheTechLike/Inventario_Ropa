@@ -57,3 +57,5 @@ C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario
 C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\obj\Release\net8.0-windows\win-x64\refint\Inventario_Base.dll
 C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\obj\Release\net8.0-windows\win-x64\Inventario_Base.pdb
 C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\obj\Release\net8.0-windows\win-x64\ref\Inventario_Base.dll
+C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\obj\Release\net8.0-windows\win-x64\Inventario_Base.Actualizar.resources
+C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\obj\Release\net8.0-windows\win-x64\Inventario_Base.Eliminar.resources

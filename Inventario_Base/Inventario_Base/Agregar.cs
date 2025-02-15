@@ -73,18 +73,18 @@ namespace Inventario_Base
                         }
                         else
                         {
-                            MessageBox.Show($"Error al agregar: {message}");
+                            MessageBox.Show($"Error al agregar: {message}", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message);
+                        MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al agregar: " + ex.Message);
+                MessageBox.Show("Error al agregar: " + ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

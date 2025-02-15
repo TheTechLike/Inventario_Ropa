@@ -31,5 +31,11 @@ namespace Inventario_Base.Datos
             HttpResponseMessage response = await client.PutAsync(conect + "InventarioU", content);
             return await response.Content.ReadAsStringAsync();
         }
+
+        public async Task<string> DeleteInv(int id)
+        {
+            HttpResponseMessage response = await client.DeleteAsync(conect + "InventarioU/" + id);
+            return await response.Content.ReadAsStringAsync();
+        }
     }
 }

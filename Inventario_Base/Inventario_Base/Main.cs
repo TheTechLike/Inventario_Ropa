@@ -55,5 +55,17 @@ namespace Inventario_Base
             this.splitContainer1.Panel2.Tag = inventario;
             inventario.Show();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+           Eliminar inventario = new Eliminar();
+            if (this.splitContainer1.Panel2.Controls.Count > 0)
+                this.splitContainer1.Panel2.Controls.RemoveAt(0);
+
+            inventario.TopLevel = false;
+            this.splitContainer1.Panel2.Controls.Add(inventario);
+            this.splitContainer1.Panel2.Tag = inventario;
+            inventario.Show();
+        }
     }
 }
