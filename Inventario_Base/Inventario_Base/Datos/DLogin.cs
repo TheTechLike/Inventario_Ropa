@@ -2,6 +2,7 @@
 using Microsoft.VisualBasic.Logging;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -16,6 +17,7 @@ namespace Inventario_Base.Datos
     {
         private static readonly HttpClient client = new HttpClient();
         private string conect = Conexion.conectionstring;
+        private string conectlocal = Conexion.conectionstringlocal;
 
         private string encriptar(string password)
         {
@@ -40,7 +42,7 @@ namespace Inventario_Base.Datos
 
             // Genera el token JWT según el valor de Login
             var tokenHandler = new JwtSecurityTokenHandler();
-            var securityToken = tokenHandler.CreateToken( tokenDescriptorL);
+            var securityToken = tokenHandler.CreateToken(tokenDescriptorL);
 
             // Obtiene el JWT como una cadena
             var encryptedToken = tokenHandler.WriteToken(securityToken);
@@ -60,35 +62,62 @@ namespace Inventario_Base.Datos
         }
         public async Task<string> GetLogin(MLogin parameters)
         {
-            // Encriptar la contraseña antes de enviar
-            parameters.Password = encriptar(parameters.Password);
+            
+            
+                // Encriptar la contraseña antes de enviar
+                parameters.Password = encriptar(parameters.Password);
 
-            // Serializar los parámetros a JSON
-            string jsonBody = JsonSerializer.Serialize(parameters);
-            StringContent content = new StringContent(jsonBody, Encoding.UTF8, "application/json");
+                // Serializar los parámetros a JSON
+                string jsonBody = JsonSerializer.Serialize(parameters);
+                StringContent content = new StringContent(jsonBody, Encoding.UTF8, "application/json");
 
-            // Enviar la solicitud POST
-            HttpResponseMessage response = await client.PostAsync(conect + "Usuario/login", content);
+            try { 
+                // Enviar la solicitud POST
+                HttpResponseMessage response = await client.PostAsync(conect + "Usuario/login", content);
 
-            // Validar si la respuesta es exitosa
-            if (response.IsSuccessStatusCode)
-            {
-                // Leer el contenido de la respuesta
-                string responseContent = await response.Content.ReadAsStringAsync();
-
-                // Deserializar la respuesta para obtener el campo "user"
-                var responseObject = JsonSerializer.Deserialize<Dictionary<string, object>>(responseContent);
-                if (responseObject != null && responseObject.ContainsKey("user"))
+                // Validar si la respuesta es exitosa
+                if (response.IsSuccessStatusCode)
                 {
-                    // Devolver el valor del campo "user"
-                    return responseObject["user"]?.ToString() ?? "0";
-                }
+                    // Leer el contenido de la respuesta
+                    string responseContent = await response.Content.ReadAsStringAsync();
 
+                    // Deserializar la respuesta para obtener el campo "user"
+                    var responseObject = JsonSerializer.Deserialize<Dictionary<string, object>>(responseContent);
+                    if (responseObject != null && responseObject.ContainsKey("user"))
+                    {
+                        // Devolver el valor del campo "user"
+                        return responseObject["user"]?.ToString() ?? "0";
+                    }
+
+                    return "0";
+                }
                 return "0";
             }
-            return "0";
+            catch
+            {
+                return GetLoginlcl(parameters);
+            }
         }
 
+        private string GetLoginlcl(MLogin parameters)
+        {
+
+            using (SqlConnection cn = new SqlConnection(conectlocal))
+            {
+                cn.Open();
+
+                string sql = "SELECT * FROM Usuario WHERE usuario = @user AND Contraseña = @password";
+                SqlCommand cmd = new SqlCommand(sql, cn);
+                cmd.Parameters.AddWithValue("@user", parameters.User);
+                cmd.Parameters.AddWithValue("@password", parameters.Password);
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    return dr[0].ToString();
+                }
+                return "0";
+            }
+        }
 
     }
 }

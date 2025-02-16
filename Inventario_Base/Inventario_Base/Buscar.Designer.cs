@@ -80,7 +80,6 @@
             groupBox1.Size = new Size(434, 69);
             groupBox1.TabIndex = 4;
             groupBox1.TabStop = false;
-            groupBox1.Visible = false;
             // 
             // label1
             // 
