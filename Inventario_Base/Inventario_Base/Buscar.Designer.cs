@@ -32,15 +32,17 @@
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             inventarioBindingSource = new BindingSource(components);
             splitContainer1 = new SplitContainer();
-            button1 = new Button();
+            groupBox1 = new GroupBox();
             label1 = new Label();
             textBox1 = new TextBox();
+            button1 = new Button();
             dataGridView1 = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)inventarioBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
+            groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -58,16 +60,49 @@
             // 
             // splitContainer1.Panel1
             // 
+            splitContainer1.Panel1.Controls.Add(groupBox1);
             splitContainer1.Panel1.Controls.Add(button1);
-            splitContainer1.Panel1.Controls.Add(label1);
-            splitContainer1.Panel1.Controls.Add(textBox1);
             // 
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.Controls.Add(dataGridView1);
             splitContainer1.Size = new Size(1336, 716);
-            splitContainer1.SplitterDistance = 100;
+            splitContainer1.SplitterDistance = 69;
             splitContainer1.TabIndex = 0;
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(label1);
+            groupBox1.Controls.Add(textBox1);
+            groupBox1.Dock = DockStyle.Left;
+            groupBox1.Location = new Point(0, 0);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(434, 69);
+            groupBox1.TabIndex = 4;
+            groupBox1.TabStop = false;
+            groupBox1.Visible = false;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Dock = DockStyle.Left;
+            label1.Font = new Font("Segoe UI Black", 15F);
+            label1.Location = new Point(3, 19);
+            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(79, 28);
+            label1.TabIndex = 2;
+            label1.Text = "Buscar";
+            label1.Click += label1_Click_1;
+            // 
+            // textBox1
+            // 
+            textBox1.Dock = DockStyle.Right;
+            textBox1.Location = new Point(102, 19);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(329, 23);
+            textBox1.TabIndex = 0;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // button1
             // 
@@ -76,38 +111,20 @@
             button1.FlatAppearance.BorderSize = 0;
             button1.Font = new Font("Segoe UI", 19F);
             button1.ForeColor = Color.DodgerBlue;
-            button1.Location = new Point(1286, 0);
+            button1.Location = new Point(1275, 0);
             button1.Margin = new Padding(0);
             button1.Name = "button1";
-            button1.Size = new Size(50, 100);
+            button1.Size = new Size(61, 69);
             button1.TabIndex = 3;
             button1.Text = "🔃";
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Black", 15F);
-            label1.Location = new Point(13, 36);
-            label1.Margin = new Padding(4, 0, 4, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(79, 28);
-            label1.TabIndex = 2;
-            label1.Text = "Buscar";
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(93, 41);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(291, 23);
-            textBox1.TabIndex = 0;
-            textBox1.TextChanged += textBox1_TextChanged;
-            // 
             // dataGridView1
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -119,12 +136,10 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.Location = new Point(0, 0);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.DefaultCellStyle.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridView1.Size = new Size(1336, 612);
+            dataGridView1.Size = new Size(1336, 643);
             dataGridView1.TabIndex = 0;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
@@ -136,18 +151,19 @@
             ClientSize = new Size(1336, 716);
             ControlBox = false;
             Controls.Add(splitContainer1);
-            MaximizeBox = false;
-            MinimizeBox = false;
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "Buscar";
             Text = "Inventario";
             WindowState = FormWindowState.Maximized;
             Load += Buscar_Load;
+            ResizeEnd += Buscar_ResizeEnd;
             ((System.ComponentModel.ISupportInitialize)inventarioBindingSource).EndInit();
             splitContainer1.Panel1.ResumeLayout(false);
-            splitContainer1.Panel1.PerformLayout();
             splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
@@ -159,5 +175,6 @@
         private TextBox textBox1;
         private Label label1;
         private Button button1;
+        private GroupBox groupBox1;
     }
 }

@@ -64,7 +64,3 @@ C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario
 C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\obj\Release\net8.0-windows\ref\Inventario_Base.dll
 C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\obj\Release\net8.0-windows\Inventario_Base.Actualizar.resources
 C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\obj\Release\net8.0-windows\Inventario_Base.Eliminar.resources
-C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\bin\Release\net8.0-windows\Inventario_Base.dll.manifest
-C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\bin\Release\net8.0-windows\Inventario_Base.application
-C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\obj\Release\net8.0-windows\Inventario_Base.dll.manifest
-C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\obj\Release\net8.0-windows\Inventario_Base.application

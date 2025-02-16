@@ -52,10 +52,20 @@ namespace Inventario_Base
             dataGridView1.DataSource = await consultar.GetInventario(textBox1.Text);
         }
 
-        private  void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             Buscar_Load(sender, e);
-           
+
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Buscar_ResizeEnd(object sender, EventArgs e)
+        {
+
         }
     }
 }

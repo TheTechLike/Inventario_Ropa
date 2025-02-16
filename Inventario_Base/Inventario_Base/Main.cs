@@ -15,8 +15,6 @@ namespace Inventario_Base
             {
                 this.Enabled = false;
                 login.Show();
-
-
             }
 
         }
@@ -35,37 +33,66 @@ namespace Inventario_Base
         private void button2_Click(object sender, EventArgs e)
         {
             Buscar inventario = new Buscar();
-            if (this.splitContainer1.Panel2.Controls.Count > 0)
-                this.splitContainer1.Panel2.Controls.RemoveAt(0);
+            if (this.panel3.Controls.Count > 0)
+                this.panel3.Controls.RemoveAt(0);
 
             inventario.TopLevel = false;
-            this.splitContainer1.Panel2.Controls.Add(inventario);
-            this.splitContainer1.Panel2.Tag = inventario;
+            this.panel3.Controls.Add(inventario);
+            this.panel3.Tag = inventario;
+
             inventario.Show();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             Actualizar inventario = new Actualizar();
-            if (this.splitContainer1.Panel2.Controls.Count > 0)
-                this.splitContainer1.Panel2.Controls.RemoveAt(0);
+            if (this.panel3.Controls.Count > 0)
+                this.panel3.Controls.RemoveAt(0);
 
             inventario.TopLevel = false;
-            this.splitContainer1.Panel2.Controls.Add(inventario);
-            this.splitContainer1.Panel2.Tag = inventario;
+            this.panel3.Controls.Add(inventario);
+            this.panel3.Tag = inventario;
             inventario.Show();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-           Eliminar inventario = new Eliminar();
-            if (this.splitContainer1.Panel2.Controls.Count > 0)
-                this.splitContainer1.Panel2.Controls.RemoveAt(0);
+            Eliminar inventario = new Eliminar();
+            if (this.panel3.Controls.Count > 0)
+                this.panel3.Controls.RemoveAt(0);
 
             inventario.TopLevel = false;
-            this.splitContainer1.Panel2.Controls.Add(inventario);
-            this.splitContainer1.Panel2.Tag = inventario;
+            this.panel3.Controls.Add(inventario);
+            this.panel3.Tag = inventario;
             inventario.Show();
+        }
+
+        private void Main_ResizeEnd(object sender, EventArgs e)
+        {
+            if (panel3.Controls.Count > 0)
+            {
+                if (panel3.Controls[0] is Form formulario)
+                {
+                    formulario.Dock = DockStyle.Fill;
+                    formulario.WindowState = FormWindowState.Normal;
+                    formulario.WindowState = FormWindowState.Maximized;
+
+                }
+            }
+        }
+
+        private void Main_SizeChanged(object sender, EventArgs e)
+        {
+            if (panel3.Controls.Count > 0)
+            {
+                if (panel3.Controls[0] is Form formulario)
+                {
+                    formulario.Dock = DockStyle.Fill;
+                    formulario.WindowState = FormWindowState.Normal;
+                    formulario.WindowState = FormWindowState.Maximized;
+
+                }
+            }
         }
     }
 }
