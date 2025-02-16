@@ -10,7 +10,5 @@ namespace Inventario_Base.Datos
     {
         public static string conectionstring = "http://10.0.0.129:1025/api/";
 
-            
-            
-            }
+    }
 }
