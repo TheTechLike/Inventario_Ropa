@@ -8,13 +8,70 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Inventario_Base
 {
-    public partial class Carga: Form
+    public partial class Carga : Form
     {
         public Carga()
         {
             InitializeComponent();
+            timer1.Start();
+            Sincronizacion();
+        }
+
+        private void progressBar1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void timer1_Tick(object sender, EventArgs e)
+        {
+            progressBar1.Increment(1);
+            if (progressBar1.Value == 100 || await Sincronizacion() == true)
+            {
+                progressBar1.Value = 100;
+                timer1.Stop();
+                timer2.Enabled = true;
+                timer2.Start();
+
+
+
+            }
+        }
+
+
+        private async Task<bool> Sincronizacion()
+        {
+            string apiUrl = "http://10.0.0.129:1025/api/marca";
+
+            bool canConnect = await CanConnectToApi(apiUrl);
+            return canConnect;
+        }
+
+        private async Task<bool> CanConnectToApi(string apiUrl)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    HttpResponseMessage response = await client.GetAsync(apiUrl);
+                    return response.IsSuccessStatusCode;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            if (timer2.Interval == 3000)
+            {
+                timer2.Stop();
+                this.Close();
+            }
         }
     }
 }
