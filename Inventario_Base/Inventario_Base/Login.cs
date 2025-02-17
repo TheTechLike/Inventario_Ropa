@@ -16,6 +16,7 @@ namespace Inventario_Base
         private Main main;
         public Login(Main principal)
         {
+
             InitializeComponent();
             this.main = principal;
         }

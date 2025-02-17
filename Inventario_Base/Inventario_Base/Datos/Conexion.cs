@@ -14,10 +14,9 @@ namespace Inventario_Base.Datos
 
         private static string GetLocalConnectionString()
         {
-            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string relativePath = @"..\..\..\Datos\Inventario Ropa.mdf";
-            string fullPath = System.IO.Path.GetFullPath(System.IO.Path.Combine(baseDirectory, relativePath));
-            return $"Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"{fullPath}\";Integrated Security=True";
+            string dbPath = Path.Combine(Application.StartupPath, "Inventario_Ropa.mdf");
+            string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={dbPath};Integrated Security=True;Connect Timeout=30";
+            return connectionString;
         }
     }
 }
