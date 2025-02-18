@@ -42,7 +42,7 @@ namespace Inventario_Base
         private async void Buscar_Load(object sender, EventArgs e)
 
         {
-
+            label1.Text = Conexion.conectionstringlocal;
             dataGridView1.DataSource = await consultar.GetInventariou(string.Empty);
             dataGridView1.Refresh();
         }
