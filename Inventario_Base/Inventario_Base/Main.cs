@@ -13,6 +13,7 @@ namespace Inventario_Base
             Inicio iniciar = new Inicio();
             if (iniciar.inicio == false)
             {
+               
                 this.Enabled = false;
                 login.Show();
             }

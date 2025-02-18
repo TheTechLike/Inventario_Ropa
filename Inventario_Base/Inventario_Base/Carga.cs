@@ -16,12 +16,13 @@ namespace Inventario_Base
 {
     public partial class Carga : Form
     {
-        private static string errorBD ="";
+        private Login main;
+        private static string errorBD = "";
         bool Sin = false;
-        public Carga()
+        public Carga(Login principal)
         {
             InitializeComponent();
-           
+            this.main = principal;
 
         }
 
@@ -30,10 +31,11 @@ namespace Inventario_Base
 
         }
 
-        private  void timer1_Tick(object sender, EventArgs e)
+        private void timer1_Tick(object sender, EventArgs e)
         {
+            this.main.Hide();
             progressBar1.Increment(1);
-            if (progressBar1.Value == 100 || Sin == true) 
+            if (progressBar1.Value == 100 || Sin == true)
             {
                 progressBar1.Value = 100;
                 timer1.Stop();
@@ -51,18 +53,20 @@ namespace Inventario_Base
             string apiUrl = "http://10.0.0.129:1025/api/marca";
             string local = Conexion.conectionstringlocal;
             bool canConnect = await CanConnectToApi(apiUrl);
-            bool canConnectLocal = CanConnectToLocal(local);
+            bool canConnectLocal = await CanConnectToLocal(local);
             if (canConnect && canConnectLocal)
             {
                 Sincronizacion sincronizacion = new Sincronizacion();
                 try
                 {
-                    
+
                     await sincronizacion.Sincronizar();
+                    label1.Text = "Sincronizacion Completa";
+                    progressBar1.Value = 100;
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show("Error al sincronizar la base de datos\n Error: " + e.Message + "Error", "\nErrorBD: "+sincronizacion.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Error al sincronizar la base de datos\n Error: " + e.Message + "Error", "\nErrorBD: " + sincronizacion.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
                 return true;
@@ -75,7 +79,8 @@ namespace Inventario_Base
                     DialogResult result = MessageBox.Show("No se puede conectar a la base de datos local\n Error: " + errorBD, "Error", MessageBoxButtons.CancelTryContinue, MessageBoxIcon.Error);
                     if (result == DialogResult.Cancel)
                     {
-                        this.Close();
+
+                        this.main.Close();
                     }
                     else
                     {
@@ -84,7 +89,7 @@ namespace Inventario_Base
                 }
                 else
                 {
-                    MessageBox.Show("Hay conexion\n" + local);
+                   progressBar1.Value = 90;
                 }
 
                 return false;
@@ -104,21 +109,21 @@ namespace Inventario_Base
                     HttpResponseMessage response = await client.GetAsync(apiUrl);
                     return response.IsSuccessStatusCode;
                 }
-                catch (Exception )
+                catch (Exception)
                 {
-                    
+
                     return false;
                 }
             }
         }
-        private bool CanConnectToLocal(string local)
+        private async Task<bool> CanConnectToLocal(string local)
         {
             using (SqlConnection cn = new SqlConnection(local))
             {
                 try
                 {
-                    cn.Open();
-                    cn.Close();
+                    await cn.OpenAsync();
+                    await cn.CloseAsync();
                     return true;
                 }
                 catch (Exception e)
@@ -134,17 +139,16 @@ namespace Inventario_Base
             if (timer2.Interval == 3000)
             {
                 timer2.Stop();
+                this.main.Enabled = true;
                 this.Close();
+                this.main.Show();
             }
         }
 
         private async void Carga_Load(object sender, EventArgs e)
         {
             timer1.Start();
-           if( await SincronizacionDB())
-            {
-                Sin = true;
-            }
+            Sin = await SincronizacionDB();
         }
     }
 }

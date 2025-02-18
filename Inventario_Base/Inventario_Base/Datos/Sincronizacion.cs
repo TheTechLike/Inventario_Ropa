@@ -28,7 +28,7 @@ namespace Inventario_Base.Datos
             var ListLocal = new List<MSincronizacion>();
 
             listApi = await cn.GetSincronizacion();
-            ListLocal = cn.GetSincronizacionlcl();
+            ListLocal =await cn.GetSincronizacionlcl();
 
             bool result = false;
             foreach (var item in listApi)
@@ -45,7 +45,7 @@ namespace Inventario_Base.Datos
                                     var list = await cn.GetInventario();
                                     foreach (var item3 in list)
                                     {
-                                        result =InsertarInvLCL(item3, item.FechaModificacion ?? DateTime.MinValue);
+                                        result =InsertarInvLCL(item3, item.FechaModificacion ?? DateTime.MinValue).Result;
                                     }
                                     break;
                                 case "Marca":
@@ -58,11 +58,11 @@ namespace Inventario_Base.Datos
             }
             return result;
         }
-        public bool InsertarInvLCL(MInventario parametros, DateTime fecha)
+        public  async Task<bool> InsertarInvLCL(MInventario parametros, DateTime fecha)
         {
             try
             {
-                ins.PostInvSinlcl(parametros,fecha);
+                await ins.PostInvSinlcl(parametros,fecha);
                 return true;
             }
             catch (Exception e)
