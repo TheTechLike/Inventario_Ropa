@@ -1,6 +1,7 @@
 ﻿using Azure.Core;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -15,12 +16,13 @@ namespace Inventario_Base.Datos
     {
         private static readonly HttpClient client = new HttpClient();
         private string conect = Conexion.conectionstring;
+        private string conectlocal = Conexion.conectionstringlocal;
 
-        public async Task<string> PostInv( MInventario parametros)
+        public async Task<string> PostInv(MInventario parametros)
         {
-            var json = JsonSerializer.Serialize(parametros);   
-            var content  = new StringContent(json,Encoding.UTF8,"application/json");
-            HttpResponseMessage response = await client.PostAsync(conect + "InventarioU",content);
+            var json = JsonSerializer.Serialize(parametros);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await client.PostAsync(conect + "InventarioU", content);
             return await response.Content.ReadAsStringAsync();
         }
 
@@ -36,6 +38,44 @@ namespace Inventario_Base.Datos
         {
             HttpResponseMessage response = await client.DeleteAsync(conect + "InventarioU/" + id);
             return await response.Content.ReadAsStringAsync();
+        }
+
+        public string PostInvSinlcl(MInventario parametros, DateTime FechaModificacion)
+        {
+            using (SqlConnection connection = new SqlConnection(conectlocal))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand("InsertarSinInv", connection))
+                {
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@ObjetoID", parametros.ObjetoID);
+                    command.Parameters.AddWithValue("@MarcaID", parametros.MarcaID);
+                    command.Parameters.AddWithValue("@TipoID", parametros.TipoID);
+                    command.Parameters.AddWithValue("@Nombre", parametros.Nombre);
+                    command.Parameters.AddWithValue("@SizeID", parametros.SizeID);
+                    command.Parameters.AddWithValue("@Color", parametros.Color);
+                    command.Parameters.AddWithValue("@Precio", parametros.Precio);
+                    command.Parameters.AddWithValue("@Cantidad", parametros.Cantidad);
+                    command.Parameters.AddWithValue("@UbicacionID", parametros.UbicacionID);
+                    command.Parameters.AddWithValue("@FechaAquisicion", parametros.FechaAquisicion);
+                    if (parametros.FechaActualizacion == null)
+                        command.Parameters.AddWithValue("@FechaActualizacion", DBNull.Value);
+                    else
+                        command.Parameters.AddWithValue("@FechaActualizacion", parametros.FechaActualizacion);
+                    command.Parameters.AddWithValue("@FechaModificacion", FechaModificacion);
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        return ex.Message;
+                    }
+
+                    connection.Close();
+                    return "Inventario Guardado";
+                }
+            }
         }
     }
 }

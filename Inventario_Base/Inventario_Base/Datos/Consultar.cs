@@ -17,14 +17,13 @@ namespace Inventario_Base.Datos
         private string conectlocal = Conexion.conectionstringlocal;
         private static readonly HttpClient client = new HttpClient();
 
-        public async Task<List<MInventariou>> GetInventario(string? buscar)
+        public async Task<List<MInventariou>> GetInventariou(string? buscar)
         {
             try
             {
                 HttpResponseMessage response = await client.GetAsync(conect + "inventariou/" + buscar);
                 response.EnsureSuccessStatusCode();
                 string responsebody = await response.Content.ReadAsStringAsync();
-                Console.WriteLine(responsebody);
                 List<MInventariou> list = JsonSerializer.Deserialize<List<MInventariou>>(responsebody);
                 return list;
             }
@@ -33,13 +32,24 @@ namespace Inventario_Base.Datos
                 return GetInventariolcl(buscar);
             }
         }
+        public async Task<List<MInventario>> GetInventario()
+        {
+           
+            
+                HttpResponseMessage response = await client.GetAsync(conect + "inventario");
+                response.EnsureSuccessStatusCode();
+                string responsebody = await response.Content.ReadAsStringAsync();
+                List<MInventario> list = JsonSerializer.Deserialize<List<MInventario>>(responsebody);
+                return list;
+            
+
+        }
 
         public async Task<List<MMarca>> GetMarcas()
         {
             HttpResponseMessage response = await client.GetAsync(conect + "marca");
             response.EnsureSuccessStatusCode();
             string responsebody = await response.Content.ReadAsStringAsync();
-            Console.WriteLine(responsebody);
             List<MMarca> list = JsonSerializer.Deserialize<List<MMarca>>(responsebody);
             return list;
         }
@@ -48,7 +58,6 @@ namespace Inventario_Base.Datos
             HttpResponseMessage response = await client.GetAsync(conect + "tipo");
             response.EnsureSuccessStatusCode();
             string responsebody = await response.Content.ReadAsStringAsync();
-            Console.WriteLine(responsebody);
             List<MTipo> list = JsonSerializer.Deserialize<List<MTipo>>(responsebody);
             return list;
         }
@@ -58,7 +67,6 @@ namespace Inventario_Base.Datos
             HttpResponseMessage response = await client.GetAsync(conect + "inventariou/last");
             response.EnsureSuccessStatusCode();
             string responsebody = await response.Content.ReadAsStringAsync();
-            Console.WriteLine(responsebody);
             List<MInventario> list = JsonSerializer.Deserialize<List<MInventario>>(responsebody);
             return list;
         }
@@ -68,7 +76,6 @@ namespace Inventario_Base.Datos
             HttpResponseMessage response = await client.GetAsync(conect + "ubicacion");
             response.EnsureSuccessStatusCode();
             string responsebody = await response.Content.ReadAsStringAsync();
-            Console.WriteLine(responsebody);
 
             // Deserializar la lista original
             List<MUbicacion> originalList = JsonSerializer.Deserialize<List<MUbicacion>>(responsebody);
@@ -88,13 +95,20 @@ namespace Inventario_Base.Datos
             HttpResponseMessage response = await client.GetAsync(conect + "size" + "/" + TipoID);
             response.EnsureSuccessStatusCode();
             string responsebody = await response.Content.ReadAsStringAsync();
-            Console.WriteLine(responsebody);
             List<MSize> list = JsonSerializer.Deserialize<List<MSize>>(responsebody);
             return list;
         }
 
+        public async Task<List<MSincronizacion>> GetSincronizacion()
+        {
+            HttpResponseMessage response = await client.GetAsync(conect + "sincronizacion");
+            response.EnsureSuccessStatusCode();
+            string responsebody = await response.Content.ReadAsStringAsync();
+            List<MSincronizacion> list = JsonSerializer.Deserialize<List<MSincronizacion>>(responsebody);
+            return list;
+        }
 
-        private List<MInventariou> GetInventariolcl(string? buscar="")
+       public List<MInventariou> GetInventariolcl(string? buscar = "")
         {
             List<MInventariou> list = new List<MInventariou>();
             using (SqlConnection cn = new SqlConnection(conectlocal))
@@ -126,9 +140,36 @@ namespace Inventario_Base.Datos
                         }
                     }
                 }
+                cn.Close();
             }
             return list;
         }
+        public List<MSincronizacion> GetSincronizacionlcl() 
+        { 
+            List<MSincronizacion> list = new List<MSincronizacion>();
+            using (SqlConnection cn = new SqlConnection(conectlocal))
+            {
+                cn.Open();
+                using (SqlCommand cmd = new SqlCommand("SELECT * FROM Sincronizacion", cn))
+                {
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            var sinc = new MSincronizacion();
+                            sinc.ID = dr.GetInt32(0);
+                            sinc.Nombre = dr.GetString(1);
+                            sinc.FechaCreada = dr.GetDateTime(2);
+                            sinc.FechaModificacion  = dr.IsDBNull(3) ? (DateTime?)null : dr.GetDateTime(3);
+                            list.Add(sinc);
+                        }
+                    }
+                }
+                cn.Close();
+            }
+            return list;
+        }
+
 
 
     }

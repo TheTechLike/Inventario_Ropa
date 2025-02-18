@@ -117,5 +117,16 @@ namespace Inventario_Base.Datos
         public int TipoID { get; set; }
         [JsonPropertyName("size")]
         public string Size { get; set; }
-    }                                                                   
+    }
+    internal class MSincronizacion
+    {
+        [JsonPropertyName("id")]
+        public int ID { get; set; }
+        [JsonPropertyName("nombre")]
+        public string Nombre { get; set; }
+        [JsonPropertyName("fechaCreada")]   
+        public DateTime FechaCreada { get; set; }
+        [JsonPropertyName("fechaModificacion")]
+        public DateTime? FechaModificacion { get; set; }
+    }
 }

@@ -43,13 +43,13 @@ namespace Inventario_Base
 
         {
 
-            dataGridView1.DataSource = await consultar.GetInventario(string.Empty);
+            dataGridView1.DataSource = await consultar.GetInventariou(string.Empty);
             dataGridView1.Refresh();
         }
 
         private async void textBox1_TextChanged(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = await consultar.GetInventario(textBox1.Text);
+            dataGridView1.DataSource = await consultar.GetInventariou(textBox1.Text);
         }
 
         private void button1_Click(object sender, EventArgs e)
