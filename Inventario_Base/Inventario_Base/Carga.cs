@@ -17,6 +17,7 @@ namespace Inventario_Base
     public partial class Carga : Form
     {
         private static string errorBD ="";
+        bool Sin = false;
         public Carga()
         {
             InitializeComponent();
@@ -31,9 +32,8 @@ namespace Inventario_Base
 
         private  void timer1_Tick(object sender, EventArgs e)
         {
-           var task = SincronizacionDB();
             progressBar1.Increment(1);
-            if (progressBar1.Value == 100 || task.Result ==true )
+            if (progressBar1.Value == 100 || Sin == true) 
             {
                 progressBar1.Value = 100;
                 timer1.Stop();
@@ -125,9 +125,13 @@ namespace Inventario_Base
             }
         }
 
-        private void Carga_Load(object sender, EventArgs e)
+        private async void Carga_Load(object sender, EventArgs e)
         {
             timer1.Start();
+           if( await SincronizacionDB())
+            {
+                Sin = true;
+            }
         }
     }
 }
