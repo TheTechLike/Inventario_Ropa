@@ -42,11 +42,11 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Agency FB", 24F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Agency FB", 20F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             label1.ForeColor = SystemColors.ButtonFace;
-            label1.Location = new Point(57, 520);
+            label1.Location = new Point(85, 520);
             label1.Name = "label1";
-            label1.Size = new Size(333, 39);
+            label1.Size = new Size(277, 34);
             label1.TabIndex = 0;
             label1.Text = "Sincronizando Base de Datos...";
             // 
@@ -94,7 +94,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.HotTrack;
             ClientSize = new Size(447, 630);
-            ControlBox = false;
             Controls.Add(progressBar1);
             Controls.Add(pictureBox1);
             Controls.Add(label2);
@@ -108,7 +107,6 @@
             ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Carga";
-            TopMost = true;
             Load += Carga_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);

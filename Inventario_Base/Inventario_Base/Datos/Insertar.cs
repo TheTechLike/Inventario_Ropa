@@ -40,11 +40,11 @@ namespace Inventario_Base.Datos
             return await response.Content.ReadAsStringAsync();
         }
 
-        public string PostInvSinlcl(MInventario parametros, DateTime FechaModificacion)
+        public async Task<string> PostInvSinlcl(MInventario parametros, DateTime FechaModificacion)
         {
             using (SqlConnection connection = new SqlConnection(conectlocal))
             {
-                connection.Open();
+                await connection.OpenAsync();
                 using (SqlCommand command = new SqlCommand("InsertarSinInv", connection))
                 {
                     command.CommandType = System.Data.CommandType.StoredProcedure;
@@ -72,7 +72,7 @@ namespace Inventario_Base.Datos
                         return ex.Message;
                     }
 
-                    connection.Close();
+                    await connection.CloseAsync();
                     return "Inventario Guardado";
                 }
             }

@@ -29,7 +29,7 @@ namespace Inventario_Base.Datos
             }
             catch (Exception)
             {
-                return GetInventariolcl(buscar);
+                return await GetInventariolcl(buscar);
             }
         }
         public async Task<List<MInventario>> GetInventario()
@@ -108,12 +108,12 @@ namespace Inventario_Base.Datos
             return list;
         }
 
-       public List<MInventariou> GetInventariolcl(string? buscar = "")
+       public async Task< List<MInventariou>> GetInventariolcl(string? buscar = "")
         {
             List<MInventariou> list = new List<MInventariou>();
             using (SqlConnection cn = new SqlConnection(conectlocal))
             {
-                cn.Open();
+                await cn.OpenAsync();
                 using (SqlCommand cmd = new SqlCommand("buscarINV", cn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -140,16 +140,16 @@ namespace Inventario_Base.Datos
                         }
                     }
                 }
-                cn.Close();
+               await cn.CloseAsync();
             }
             return list;
         }
-        public List<MSincronizacion> GetSincronizacionlcl() 
+        public async  Task<List<MSincronizacion>> GetSincronizacionlcl() 
         { 
             List<MSincronizacion> list = new List<MSincronizacion>();
             using (SqlConnection cn = new SqlConnection(conectlocal))
             {
-                cn.Open();
+                await cn.OpenAsync();
                 using (SqlCommand cmd = new SqlCommand("SELECT * FROM Sincronizacion", cn))
                 {
                     using (SqlDataReader dr = cmd.ExecuteReader())
@@ -165,7 +165,7 @@ namespace Inventario_Base.Datos
                         }
                     }
                 }
-                cn.Close();
+                await cn.CloseAsync();
             }
             return list;
         }
