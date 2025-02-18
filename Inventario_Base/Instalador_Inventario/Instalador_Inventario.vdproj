@@ -208,7 +208,7 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Instalador_Inventario"
+        "ProductName" = "8:Inventario Base"
         "ProductCode" = "8:{B71DC1FC-9CE7-47E5-9EFC-8480934523BE}"
         "PackageCode" = "8:{8BEA525A-3118-49A7-8341-26CDCD004E3E}"
         "UpgradeCode" = "8:{0E03D501-150A-4E9E-80E1-B7C8F0128EC7}"
@@ -355,7 +355,7 @@
             "Target" = "8:_23B061F7AAD2454C9A86739A6067DE70"
             "Folder" = "8:_8A0563729EB243E89ECF2A861317D5BD"
             "WorkingFolder" = "8:_302E40A1127A436EAAC0E03D2777E1EF"
-            "Icon" = "8:"
+            "Icon" = "8:_5A2B4622A2EC45DF86E049D582FC70AE"
             "Feature" = "8:"
             }
         }
