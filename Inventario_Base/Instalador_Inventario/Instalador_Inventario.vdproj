@@ -15,7 +15,7 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_23B061F7AAD2454C9A86739A6067DE70"
+        "MsmKey" = "8:_11CC1B8E82FB484B96B05E982C8382A9"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -219,15 +219,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Inventario Base"
-        "ProductCode" = "8:{1E0BA834-EF88-4A76-B209-CBE0F4612226}"
-        "PackageCode" = "8:{638BF0BF-C65F-446D-B4C0-A8EF0FE2F71F}"
+        "ProductCode" = "8:{30AFB5BD-A499-4F65-AEDF-1A17AA253A6D}"
+        "PackageCode" = "8:{C5B43A84-A456-4809-80CE-22F256360E83}"
         "UpgradeCode" = "8:{0E03D501-150A-4E9E-80E1-B7C8F0128EC7}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.5"
+        "ProductVersion" = "8:1.0.6"
         "Manufacturer" = "8:The Tech Like Company"
         "ARPHELPTELEPHONE" = "8:80996172729"
         "ARPHELPLINK" = "8:"
@@ -340,32 +340,32 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_1D94DD41405247EF8DF95E631912806C"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_8AF768497CD9446294B031389E90F2A8"
             {
-            "Name" = "8:Inventario Ropa"
+            "Name" = "8:Inventario Base"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_23B061F7AAD2454C9A86739A6067DE70"
+            "Target" = "8:_11CC1B8E82FB484B96B05E982C8382A9"
             "Folder" = "8:_873EEADAAE4746FFA61785D0192D2350"
             "WorkingFolder" = "8:_302E40A1127A436EAAC0E03D2777E1EF"
-            "Icon" = "8:_5A2B4622A2EC45DF86E049D582FC70AE"
+            "Icon" = "8:"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_AFB97E9CF8874791AF014C999D157D25"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_E4E8153F38234070A6CAF4F97B184A89"
             {
-            "Name" = "8:Inventario Ropa"
+            "Name" = "8:Inventario Base"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_23B061F7AAD2454C9A86739A6067DE70"
+            "Target" = "8:_11CC1B8E82FB484B96B05E982C8382A9"
             "Folder" = "8:_8A0563729EB243E89ECF2A861317D5BD"
             "WorkingFolder" = "8:_302E40A1127A436EAAC0E03D2777E1EF"
-            "Icon" = "8:_5A2B4622A2EC45DF86E049D582FC70AE"
+            "Icon" = "8:"
             "Feature" = "8:"
             }
         }
@@ -767,7 +767,7 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_23B061F7AAD2454C9A86739A6067DE70"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_11CC1B8E82FB484B96B05E982C8382A9"
             {
             "SourcePath" = "8:..\\Inventario_Base\\obj\\Release\\net8.0-windows\\apphost.exe"
             "TargetName" = "8:"
@@ -787,7 +787,7 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
+            "OutputConfiguration" = "8:Release|Any CPU"
             "OutputGroupCanonicalName" = "8:PublishItems"
             "OutputProjectGuid" = "8:{0C621A94-2BC3-43F2-A63A-7B6B3F558B30}"
             "ShowKeyOutput" = "11:TRUE"
