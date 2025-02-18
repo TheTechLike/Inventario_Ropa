@@ -62,7 +62,15 @@ namespace Inventario_Base
                 if (!canConnectLocal)
                 {
                     timer1.Stop();
-                    MessageBox.Show("No se puede conectar a la base de datos local\n Error: "+errorBD , "Error",MessageBoxButtons.CancelTryContinue ,MessageBoxIcon.Error);
+                    DialogResult result=MessageBox.Show("No se puede conectar a la base de datos local\n Error: "+errorBD , "Error",MessageBoxButtons.CancelTryContinue ,MessageBoxIcon.Error);
+                    if (result == DialogResult.Cancel)
+                    {
+                        this.Close();
+                    }
+                    else
+                    {
+                        timer1.Start();
+                    }
                 }
 
                 return false;
@@ -82,9 +90,9 @@ namespace Inventario_Base
                     HttpResponseMessage response = await client.GetAsync(apiUrl);
                     return response.IsSuccessStatusCode;
                 }
-                catch (Exception e)
+                catch (Exception )
                 {
-                    errorBD= (e.Message);
+                    
                     return false;
                 }
             }
@@ -101,6 +109,7 @@ namespace Inventario_Base
                 }
                 catch (Exception e)
                 {
+                    errorBD = (e.Message);
                     return false;
                 }
             }
