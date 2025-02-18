@@ -72,7 +72,7 @@ namespace Inventario_Base
                 if (!canConnectLocal)
                 {
                     timer1.Stop();
-                    DialogResult result=MessageBox.Show("No se puede conectar a la base de datos local\n Error: "+errorBD , "Error",MessageBoxButtons.CancelTryContinue ,MessageBoxIcon.Error);
+                    DialogResult result = MessageBox.Show("No se puede conectar a la base de datos local\n Error: " + errorBD, "Error", MessageBoxButtons.CancelTryContinue, MessageBoxIcon.Error);
                     if (result == DialogResult.Cancel)
                     {
                         this.Close();
@@ -81,6 +81,10 @@ namespace Inventario_Base
                     {
                         timer1.Start();
                     }
+                }
+                else
+                {
+                    MessageBox.Show("Hay conexion\n" + local);
                 }
 
                 return false;
