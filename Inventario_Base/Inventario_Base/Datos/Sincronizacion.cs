@@ -14,6 +14,7 @@ namespace Inventario_Base.Datos
         private string conectlocal = Conexion.conectionstringlocal;
         private static readonly HttpClient client = new HttpClient();
         private Insertar ins = new Insertar();
+        public string Error { get; set; }
         public async Task<bool> Sincronizar()
         {
             // Codigo para sincronizar la base de datos
@@ -29,7 +30,7 @@ namespace Inventario_Base.Datos
             listApi = await cn.GetSincronizacion();
             ListLocal = cn.GetSincronizacionlcl();
 
-
+            bool result = false;
             foreach (var item in listApi)
             {
                 foreach (var item2 in ListLocal)
@@ -44,7 +45,7 @@ namespace Inventario_Base.Datos
                                     var list = await cn.GetInventario();
                                     foreach (var item3 in list)
                                     {
-                                        InsertarInvLCL(item3, item.FechaModificacion ?? DateTime.MinValue);
+                                        result =InsertarInvLCL(item3, item.FechaModificacion ?? DateTime.MinValue);
                                     }
                                     break;
                                 case "Marca":
@@ -55,7 +56,7 @@ namespace Inventario_Base.Datos
                     }
                 }
             }
-            return true;
+            return result;
         }
         public bool InsertarInvLCL(MInventario parametros, DateTime fecha)
         {
@@ -64,8 +65,9 @@ namespace Inventario_Base.Datos
                 ins.PostInvSinlcl(parametros,fecha);
                 return true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Error = e.Message;
                 return false;
             }
         }

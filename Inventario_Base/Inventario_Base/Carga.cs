@@ -11,14 +11,17 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
+
 namespace Inventario_Base
 {
     public partial class Carga : Form
     {
+        private static string errorBD ="";
+        bool Sin = false;
         public Carga()
         {
             InitializeComponent();
-            timer1.Start();
+           
 
         }
 
@@ -27,10 +30,10 @@ namespace Inventario_Base
 
         }
 
-        private async void timer1_Tick(object sender, EventArgs e)
+        private  void timer1_Tick(object sender, EventArgs e)
         {
             progressBar1.Increment(1);
-            if (progressBar1.Value == 100 || await SincronizacionDB() == true)
+            if (progressBar1.Value == 100 || Sin == true) 
             {
                 progressBar1.Value = 100;
                 timer1.Stop();
@@ -52,11 +55,37 @@ namespace Inventario_Base
             if (canConnect && canConnectLocal)
             {
                 Sincronizacion sincronizacion = new Sincronizacion();
-                await sincronizacion.Sincronizar();
+                try
+                {
+                    
+                    await sincronizacion.Sincronizar();
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Error al sincronizar la base de datos\n Error: " + e.Message + "Error", "\nErrorBD: "+sincronizacion.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
                 return true;
             }
             else
             {
+                if (!canConnectLocal)
+                {
+                    timer1.Stop();
+                    DialogResult result = MessageBox.Show("No se puede conectar a la base de datos local\n Error: " + errorBD, "Error", MessageBoxButtons.CancelTryContinue, MessageBoxIcon.Error);
+                    if (result == DialogResult.Cancel)
+                    {
+                        this.Close();
+                    }
+                    else
+                    {
+                        timer1.Start();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Hay conexion\n" + local);
+                }
 
                 return false;
             }
@@ -75,8 +104,9 @@ namespace Inventario_Base
                     HttpResponseMessage response = await client.GetAsync(apiUrl);
                     return response.IsSuccessStatusCode;
                 }
-                catch (Exception)
+                catch (Exception )
                 {
+                    
                     return false;
                 }
             }
@@ -93,6 +123,7 @@ namespace Inventario_Base
                 }
                 catch (Exception e)
                 {
+                    errorBD = (e.Message);
                     return false;
                 }
             }
@@ -107,9 +138,13 @@ namespace Inventario_Base
             }
         }
 
-        private void Carga_Load(object sender, EventArgs e)
+        private async void Carga_Load(object sender, EventArgs e)
         {
-
+            timer1.Start();
+           if( await SincronizacionDB())
+            {
+                Sin = true;
+            }
         }
     }
 }
