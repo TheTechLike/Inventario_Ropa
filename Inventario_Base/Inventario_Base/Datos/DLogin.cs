@@ -115,7 +115,9 @@ namespace Inventario_Base.Datos
                 {
                     return dr[0].ToString();
                 }
+                cn.Close();
                 return "0";
+                
             }
         }
 

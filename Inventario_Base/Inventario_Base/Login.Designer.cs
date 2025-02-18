@@ -110,7 +110,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(128, 128, 255);
             ClientSize = new Size(369, 534);
-            ControlBox = false;
             Controls.Add(pictureBox1);
             Controls.Add(button1);
             Controls.Add(textBox2);
@@ -120,6 +119,7 @@
             Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Margin = new Padding(5);
             MaximizeBox = false;
+            MdiChildrenMinimizedAnchorBottom = false;
             MinimizeBox = false;
             Name = "Login";
             ShowIcon = false;

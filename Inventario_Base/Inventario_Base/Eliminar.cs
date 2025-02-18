@@ -36,7 +36,7 @@ namespace Inventario_Base
 
         private async void Eliminar_Load(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = await consultar.GetInventario(string.Empty);
+            dataGridView1.DataSource = await consultar.GetInventariou(string.Empty);
             dataGridView1.Refresh();
 
             comboBox1.DisplayMember = "Nombre";

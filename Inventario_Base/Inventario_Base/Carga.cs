@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Inventario_Base.Datos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,7 +19,7 @@ namespace Inventario_Base
         {
             InitializeComponent();
             timer1.Start();
-            Sincronizacion();
+
         }
 
         private void progressBar1_Click(object sender, EventArgs e)
@@ -28,7 +30,7 @@ namespace Inventario_Base
         private async void timer1_Tick(object sender, EventArgs e)
         {
             progressBar1.Increment(1);
-            if (progressBar1.Value == 100 || await Sincronizacion() == true)
+            if (progressBar1.Value == 100 || await SincronizacionDB() == true)
             {
                 progressBar1.Value = 100;
                 timer1.Stop();
@@ -41,12 +43,27 @@ namespace Inventario_Base
         }
 
 
-        private async Task<bool> Sincronizacion()
+        private async Task<bool> SincronizacionDB()
         {
             string apiUrl = "http://10.0.0.129:1025/api/marca";
-
+            string local = Conexion.conectionstringlocal;
             bool canConnect = await CanConnectToApi(apiUrl);
-            return canConnect;
+            bool canConnectLocal = CanConnectToLocal(local);
+            if (canConnect && canConnectLocal)
+            {
+                Sincronizacion sincronizacion = new Sincronizacion();
+                await sincronizacion.Sincronizar();
+                return true;
+            }
+            else
+            {
+
+                return false;
+            }
+
+
+
+
         }
 
         private async Task<bool> CanConnectToApi(string apiUrl)
@@ -64,6 +81,22 @@ namespace Inventario_Base
                 }
             }
         }
+        private bool CanConnectToLocal(string local)
+        {
+            using (SqlConnection cn = new SqlConnection(local))
+            {
+                try
+                {
+                    cn.Open();
+                    cn.Close();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+        }
 
         private void timer2_Tick(object sender, EventArgs e)
         {
@@ -72,6 +105,11 @@ namespace Inventario_Base
                 timer2.Stop();
                 this.Close();
             }
+        }
+
+        private void Carga_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
