@@ -31,9 +31,9 @@ namespace Inventario_Base
 
         private  void timer1_Tick(object sender, EventArgs e)
         {
-           
+           var task = SincronizacionDB();
             progressBar1.Increment(1);
-            if (progressBar1.Value == 100 || SincronizacionDB() == true)
+            if (progressBar1.Value == 100 || task.Result ==true )
             {
                 progressBar1.Value = 100;
                 timer1.Stop();
@@ -46,16 +46,16 @@ namespace Inventario_Base
         }
 
 
-        private bool SincronizacionDB()
+        private async Task<bool> SincronizacionDB()
         {
             string apiUrl = "http://10.0.0.129:1025/api/marca";
             string local = Conexion.conectionstringlocal;
-            bool canConnect = Convert.ToBoolean( CanConnectToApi(apiUrl));
+            bool canConnect = await CanConnectToApi(apiUrl);
             bool canConnectLocal = CanConnectToLocal(local);
             if (canConnect && canConnectLocal)
             {
                 Sincronizacion sincronizacion = new Sincronizacion();
-                using var _ = sincronizacion.Sincronizar();
+                await sincronizacion.Sincronizar();
                 return true;
             }
             else
