@@ -89,6 +89,8 @@ namespace Inventario_Base
                 else
                 {
                    progressBar1.Value = 90;
+
+                    timer1.Start();
                 }
 
                 return false;
