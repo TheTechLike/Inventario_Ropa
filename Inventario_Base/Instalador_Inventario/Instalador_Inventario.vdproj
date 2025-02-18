@@ -89,6 +89,11 @@
                     "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 y x64)"
                     "ProductCode" = "8:.NETFramework,Version=v4.7.2"
                     }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.NetCore.CoreRuntime.8.0.x64"
+                    {
+                    "Name" = "8:.NET Runtime 8.0.13 (x64)"
+                    "ProductCode" = "8:Microsoft.NetCore.CoreRuntime.8.0.x64"
+                    }
                 }
             }
         }
@@ -210,7 +215,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Inventario Base"
         "ProductCode" = "8:{B71DC1FC-9CE7-47E5-9EFC-8480934523BE}"
-        "PackageCode" = "8:{8BEA525A-3118-49A7-8341-26CDCD004E3E}"
+        "PackageCode" = "8:{611DFC55-D2DB-498B-9294-8FAAA87B3C20}"
         "UpgradeCode" = "8:{0E03D501-150A-4E9E-80E1-B7C8F0128EC7}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
