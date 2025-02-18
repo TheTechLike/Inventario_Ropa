@@ -18,7 +18,6 @@ namespace Inventario_Base
     {
         private Login main;
         private static string errorBD = "";
-        bool Sin = false;
         public Carga(Login principal)
         {
             InitializeComponent();
@@ -31,11 +30,11 @@ namespace Inventario_Base
 
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private async void timer1_Tick(object sender, EventArgs e)
         {
             this.main.Hide();
             progressBar1.Increment(1);
-            if (progressBar1.Value == 100 || Sin == true)
+            if (progressBar1.Value == 100 || await SincronizacionDB() == true)
             {
                 progressBar1.Value = 100;
                 timer1.Stop();
@@ -145,10 +144,10 @@ namespace Inventario_Base
             }
         }
 
-        private async void Carga_Load(object sender, EventArgs e)
+        private  void Carga_Load(object sender, EventArgs e)
         {
             timer1.Start();
-            Sin = await SincronizacionDB();
+
         }
     }
 }
