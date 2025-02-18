@@ -55,7 +55,16 @@ namespace Inventario_Base
             if (canConnect && canConnectLocal)
             {
                 Sincronizacion sincronizacion = new Sincronizacion();
-                await sincronizacion.Sincronizar();
+                try
+                {
+                    
+                    await sincronizacion.Sincronizar();
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Error al sincronizar la base de datos\n Error: " + e.Message + "Error", "\nErrorBD: "+sincronizacion.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
                 return true;
             }
             else
