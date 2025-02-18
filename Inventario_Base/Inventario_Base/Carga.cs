@@ -11,10 +11,12 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
+
 namespace Inventario_Base
 {
     public partial class Carga : Form
     {
+        private static string errorBD ="";
         public Carga()
         {
             InitializeComponent();
@@ -57,6 +59,11 @@ namespace Inventario_Base
             }
             else
             {
+                if (!canConnectLocal)
+                {
+                    timer1.Stop();
+                    MessageBox.Show("No se puede conectar a la base de datos local\n Error: "+errorBD , "Error",MessageBoxButtons.CancelTryContinue ,MessageBoxIcon.Error);
+                }
 
                 return false;
             }
@@ -75,8 +82,9 @@ namespace Inventario_Base
                     HttpResponseMessage response = await client.GetAsync(apiUrl);
                     return response.IsSuccessStatusCode;
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
+                    errorBD= (e.Message);
                     return false;
                 }
             }
