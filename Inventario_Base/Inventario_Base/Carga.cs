@@ -20,7 +20,7 @@ namespace Inventario_Base
         public Carga()
         {
             InitializeComponent();
-            timer1.Start();
+           
 
         }
 
@@ -127,7 +127,7 @@ namespace Inventario_Base
 
         private void Carga_Load(object sender, EventArgs e)
         {
-
+            timer1.Start();
         }
     }
 }
