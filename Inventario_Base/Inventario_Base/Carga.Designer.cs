@@ -41,7 +41,6 @@
             // 
             // label1
             // 
-            label1.AutoSize = true;
             label1.Font = new Font("Agency FB", 20F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             label1.ForeColor = SystemColors.ButtonFace;
             label1.Location = new Point(85, 520);
@@ -105,7 +104,7 @@
             Name = "Carga";
             ShowIcon = false;
             ShowInTaskbar = false;
-            StartPosition = FormStartPosition.CenterScreen;
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Carga";
             Load += Carga_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

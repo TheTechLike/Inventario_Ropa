@@ -37,6 +37,7 @@
             textBox1 = new TextBox();
             button1 = new Button();
             dataGridView1 = new DataGridView();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)inventarioBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
@@ -60,6 +61,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            splitContainer1.Panel1.Controls.Add(label2);
             splitContainer1.Panel1.Controls.Add(groupBox1);
             splitContainer1.Panel1.Controls.Add(button1);
             // 
@@ -142,6 +144,15 @@
             dataGridView1.TabIndex = 0;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(466, 25);
+            label2.Name = "label2";
+            label2.Size = new Size(38, 15);
+            label2.TabIndex = 5;
+            label2.Text = "label2";
+            // 
             // Buscar
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -158,6 +169,7 @@
             ResizeEnd += Buscar_ResizeEnd;
             ((System.ComponentModel.ISupportInitialize)inventarioBindingSource).EndInit();
             splitContainer1.Panel1.ResumeLayout(false);
+            splitContainer1.Panel1.PerformLayout();
             splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
@@ -175,5 +187,6 @@
         private Label label1;
         private Button button1;
         private GroupBox groupBox1;
+        private Label label2;
     }
 }
