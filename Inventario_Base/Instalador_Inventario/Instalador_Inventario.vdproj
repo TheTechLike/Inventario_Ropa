@@ -94,11 +94,6 @@
                     "Name" = "8:Entorno de ejecución de escritorio de .NET 8.0.13 (x64)"
                     "ProductCode" = "8:Microsoft.NetCore.DesktopRuntime.8.0.x64"
                     }
-                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.SqlServer.Express.11.0"
-                    {
-                    "Name" = "8:SQL Server 2012 Express"
-                    "ProductCode" = "8:Microsoft.SqlServer.Express.11.0"
-                    }
                     "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.SqlServer.SqlLocalDB.15.0"
                     {
                     "Name" = "8:SQL Server 2019 Express LocalDB"
@@ -230,7 +225,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Inventario Base"
         "ProductCode" = "8:{237337B5-671F-4764-AB57-F4B66F7A11BC}"
-        "PackageCode" = "8:{453C461E-C439-4F5B-9DB9-EE09E23551E9}"
+        "PackageCode" = "8:{BB20F6A3-791E-452D-B900-AC1B7A750C3A}"
         "UpgradeCode" = "8:{E0440BED-6331-48F6-B37F-FF87012216B9}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
