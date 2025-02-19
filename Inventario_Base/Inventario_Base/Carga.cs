@@ -52,16 +52,16 @@ namespace Inventario_Base
             string apiUrl = "http://10.0.0.129:1025/api/marca";
             string local = Conexion.conectionstringlocal;
             bool canConnect = await CanConnectToApi(apiUrl);
-            bool canConnectLocal = await CanConnectToLocal(local);
+            bool canConnectLocal = CanConnectToLocal(local);
             if (canConnect && canConnectLocal)
             {
                 Sincronizacion sincronizacion = new Sincronizacion();
                 try
                 {
-
+                    
                     await sincronizacion.Sincronizar();
                     label1.Text = "Sincronizacion Completa";
-                    progressBar1.Value = 100;
+                    progressBar1.Value = 90;
                 }
                 catch (Exception e)
                 {
@@ -88,9 +88,9 @@ namespace Inventario_Base
                 }
                 else
                 {
-                   progressBar1.Value = 90;
+                   progressBar1.Value = 100;
 
-                    timer1.Start();
+                    
                 }
 
                 return false;
@@ -117,14 +117,14 @@ namespace Inventario_Base
                 }
             }
         }
-        private async Task<bool> CanConnectToLocal(string local)
+        private bool CanConnectToLocal(string local)
         {
             using (SqlConnection cn = new SqlConnection(local))
             {
                 try
                 {
-                    await cn.OpenAsync();
-                    await cn.CloseAsync();
+                   cn.Open();
+                     cn.Close();
                     return true;
                 }
                 catch (Exception e)
