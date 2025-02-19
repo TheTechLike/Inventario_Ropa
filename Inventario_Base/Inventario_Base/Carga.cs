@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 
 
@@ -24,7 +25,7 @@ namespace Inventario_Base
             this.main = principal;
 
         }
-
+        public int conectadolcl { get; set; }
         private void progressBar1_Click(object sender, EventArgs e)
         {
 
@@ -58,13 +59,15 @@ namespace Inventario_Base
                 Sincronizacion sincronizacion = new Sincronizacion();
                 try
                 {
-                    
+
                     await sincronizacion.Sincronizar();
                     label1.Text = "Sincronizacion Completa";
                     progressBar1.Value = 90;
+                    conectadolcl = 0;// ambos conectados
                 }
                 catch (Exception e)
                 {
+                    conectadolcl = 1; // solo local o api;
                     MessageBox.Show("Error al sincronizar la base de datos\n Error: " + e.Message + "Error", "\nErrorBD: " + sincronizacion.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
@@ -78,7 +81,7 @@ namespace Inventario_Base
                     DialogResult result = MessageBox.Show("No se puede conectar a la base de datos local\n Error: " + errorBD, "Error", MessageBoxButtons.CancelTryContinue, MessageBoxIcon.Error);
                     if (result == DialogResult.Cancel)
                     {
-
+                        conectadolcl = 2; // solo api
                         this.main.Close();
                     }
                     else
@@ -88,9 +91,10 @@ namespace Inventario_Base
                 }
                 else
                 {
-                   progressBar1.Value = 100;
 
-                    
+                    conectadolcl = 3; // solo local
+                    progressBar1.Value = 100;
+
                 }
 
                 return false;
@@ -123,8 +127,8 @@ namespace Inventario_Base
             {
                 try
                 {
-                   cn.Open();
-                     cn.Close();
+                    cn.Open();
+                    cn.Close();
                     return true;
                 }
                 catch (Exception e)
@@ -146,10 +150,42 @@ namespace Inventario_Base
             }
         }
 
-        private  void Carga_Load(object sender, EventArgs e)
+        private void Carga_Load(object sender, EventArgs e)
         {
             timer1.Start();
 
+        }
+
+        private void Carga_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            switch (conectadolcl)
+            {
+
+                case 1:
+                    var result = MessageBox.Show("Error al conectar a la base de datos local o Api, Por favor verifique con su supervisor", "Advertencia", MessageBoxButtons.CancelTryContinue, MessageBoxIcon.Warning);
+                    if (result == DialogResult.Cancel)
+                    {
+                        Application.Exit();
+                    }
+                    else if (result == DialogResult.Retry)
+                    {
+                        Application.Restart();
+                    }
+                    break;
+                case 3:
+                    var result3 = MessageBox.Show("Error al conectar a la base de datos,Solo disponible para consultas o administrador. Por favor verifique con su supervisor", "Advertencia", MessageBoxButtons.CancelTryContinue, MessageBoxIcon.Warning);
+                    if (result3 == DialogResult.Cancel)
+                    {
+                        Application.Exit();
+                    }
+                    else if (result3 == DialogResult.Retry)
+                    {
+                        Application.Restart();
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

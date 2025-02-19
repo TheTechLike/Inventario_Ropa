@@ -41,40 +41,40 @@
             // 
             // label1
             // 
-            label1.Font = new Font("Agency FB", 20F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Agency FB", 16F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             label1.ForeColor = SystemColors.ButtonFace;
-            label1.Location = new Point(85, 520);
+            label1.Location = new Point(96, 444);
             label1.Name = "label1";
-            label1.Size = new Size(277, 34);
+            label1.Size = new Size(229, 34);
             label1.TabIndex = 0;
             label1.Text = "Sincronizando Base de Datos...";
             // 
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(50, 163);
+            pictureBox1.Location = new Point(82, 136);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(346, 305);
-            pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
+            pictureBox1.Size = new Size(256, 256);
+            pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
             // 
             // progressBar1
             // 
-            progressBar1.Location = new Point(48, 474);
+            progressBar1.Location = new Point(72, 407);
             progressBar1.Name = "progressBar1";
-            progressBar1.Size = new Size(348, 23);
+            progressBar1.Size = new Size(277, 23);
             progressBar1.TabIndex = 2;
             progressBar1.Click += progressBar1_Click;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Bookman Old Style", 36F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label2.Font = new Font("Consolas", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = SystemColors.ButtonFace;
-            label2.Location = new Point(48, 40);
+            label2.Location = new Point(55, 39);
             label2.Name = "label2";
-            label2.Size = new Size(351, 56);
+            label2.Size = new Size(310, 56);
             label2.TabIndex = 0;
             label2.Text = "TheTechLike";
             // 
@@ -92,7 +92,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.HotTrack;
-            ClientSize = new Size(447, 630);
+            ClientSize = new Size(421, 515);
             Controls.Add(progressBar1);
             Controls.Add(pictureBox1);
             Controls.Add(label2);
@@ -104,8 +104,9 @@
             Name = "Carga";
             ShowIcon = false;
             ShowInTaskbar = false;
-            StartPosition = FormStartPosition.CenterParent;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Carga";
+            FormClosed += Carga_FormClosed;
             Load += Carga_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);

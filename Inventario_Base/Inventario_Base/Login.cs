@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace Inventario_Base
 {
@@ -67,14 +68,18 @@ namespace Inventario_Base
         {
             main.Hide();
             this.Enabled = false;
-            new Carga(this).Show();
+            Carga carga = new Carga(this);
+           carga.Show();
+           
             
             
         }
 
         private void Login_FormClosed(object sender, FormClosedEventArgs e)
         {
-                    if(iniciar.inicio == false)
+
+            
+            if (iniciar.inicio == false)
             {
                 Application.Exit();
             }
