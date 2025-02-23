@@ -67,3 +67,5 @@ C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario
 C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\obj\Release\net8.0-windows\Inventario_Base.pdb
 C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\obj\Release\net8.0-windows\Inventario_Base.genruntimeconfig.cache
 C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\obj\Release\net8.0-windows\ref\Inventario_Base.dll
+C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\obj\Release\net8.0-windows\Inventario_Base.AgregarU.resources
+C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\obj\Release\net8.0-windows\Inventario_Base.UserPassword.resources
