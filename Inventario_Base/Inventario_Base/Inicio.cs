@@ -9,7 +9,5 @@ namespace Inventario_Base
     internal class Inicio
     {
         public bool inicio = false;
-
-
     }
 }
