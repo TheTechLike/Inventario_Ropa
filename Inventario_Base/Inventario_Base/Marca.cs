@@ -19,7 +19,6 @@ namespace Inventario_Base
 
         private void textBox5_TextChanged(object sender, EventArgs e)
         {
-
         }
 
         private void button3_Click(object sender, EventArgs e)
