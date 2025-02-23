@@ -13,7 +13,7 @@ namespace Inventario_Base
 {
     public partial class AgregarU : Form
     {
-       Insertar function = new Insertar();
+        Insertar function = new Insertar();
         public AgregarU()
         {
             InitializeComponent();
@@ -66,10 +66,11 @@ namespace Inventario_Base
                     {
                         MessageBox.Show("Usuario Agregado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         userPassword.Close();
+                        Close();
                     }
                     else
                     {
-                        MessageBox.Show("Error al agregar el usuario\n" + "Error: "+function.error, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Error al agregar el usuario\n" + "Error: " + function.error, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
 
@@ -79,9 +80,14 @@ namespace Inventario_Base
 
         private async Task<bool> InsertUsuario(MUsuario usuario)
         {
-         
+
             var result = await function.PostUser(usuario);
             return result;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
