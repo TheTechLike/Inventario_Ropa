@@ -3,7 +3,7 @@
 "VSVersion" = "3:800"
 "ProjectType" = "8:{978C614F-708E-4E1A-B201-565925725DBA}"
 "IsWebType" = "8:FALSE"
-"ProjectName" = "8:Instalador_Inventario"
+"ProjectName" = "8:Inventario_RopaTheTheLike"
 "LanguageId" = "3:3082"
 "CodePage" = "3:1252"
 "UILanguageId" = "3:3082"
@@ -15,7 +15,13 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_23B061F7AAD2454C9A86739A6067DE70"
+        "MsmKey" = "8:_11CC1B8E82FB484B96B05E982C8382A9"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5A2B4622A2EC45DF86E049D582FC70AE"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -37,6 +43,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -62,15 +84,25 @@
             "ComponentsUrl" = "8:"
                 "Items"
                 {
-                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.NetCore.CoreRuntime.8.0.x64"
                     {
-                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 y x64)"
-                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    "Name" = "8:.NET Runtime 8.0.13 (x64)"
+                    "ProductCode" = "8:Microsoft.NetCore.CoreRuntime.8.0.x64"
                     }
                     "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.NetCore.DesktopRuntime.8.0.x64"
                     {
                     "Name" = "8:Entorno de ejecución de escritorio de .NET 8.0.13 (x64)"
                     "ProductCode" = "8:Microsoft.NetCore.DesktopRuntime.8.0.x64"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.SqlServer.SqlLocalDB.15.0"
+                    {
+                    "Name" = "8:SQL Server 2019 Express LocalDB"
+                    "ProductCode" = "8:Microsoft.SqlServer.SqlLocalDB.15.0"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Visual.C++.14.0.x64"
+                    {
+                    "Name" = "8:Visual C++ \"14\" Runtime Libraries (x64)"
+                    "ProductCode" = "8:Microsoft.Visual.C++.14.0.x64"
                     }
                 }
             }
@@ -105,6 +137,26 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5A2B4622A2EC45DF86E049D582FC70AE"
+            {
+            "SourcePath" = "8:..\\..\\..\\..\\..\\Imágenes\\TheTechLike.ico"
+            "TargetName" = "8:TheTechLike.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_302E40A1127A436EAAC0E03D2777E1EF"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
         }
         "FileType"
         {
@@ -171,26 +223,26 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Instalador_Inventario"
-        "ProductCode" = "8:{B71DC1FC-9CE7-47E5-9EFC-8480934523BE}"
-        "PackageCode" = "8:{8BEA525A-3118-49A7-8341-26CDCD004E3E}"
-        "UpgradeCode" = "8:{0E03D501-150A-4E9E-80E1-B7C8F0128EC7}"
+        "ProductName" = "8:Inventario Base"
+        "ProductCode" = "8:{237337B5-671F-4764-AB57-F4B66F7A11BC}"
+        "PackageCode" = "8:{BB20F6A3-791E-452D-B900-AC1B7A750C3A}"
+        "UpgradeCode" = "8:{E0440BED-6331-48F6-B37F-FF87012216B9}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
-        "RemovePreviousVersions" = "11:FALSE"
+        "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.0"
-        "Manufacturer" = "8:Default Company Name"
-        "ARPHELPTELEPHONE" = "8:"
+        "ProductVersion" = "8:1.0.7"
+        "Manufacturer" = "8:The Tech Like Company"
+        "ARPHELPTELEPHONE" = "8:80996172729"
         "ARPHELPLINK" = "8:"
         "Title" = "8:Instalador_Inventario"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:Default Company Name"
+        "ARPCONTACT" = "8:The Tech Like Company"
         "Keywords" = "8:"
-        "ARPCOMMENTS" = "8:"
+        "ARPCOMMENTS" = "8:Aplicacion de Inventario"
         "ARPURLINFOABOUT" = "8:"
-        "ARPPRODUCTICON" = "8:"
+        "ARPPRODUCTICON" = "8:_5A2B4622A2EC45DF86E049D582FC70AE"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -293,29 +345,29 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_1D94DD41405247EF8DF95E631912806C"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_8AF768497CD9446294B031389E90F2A8"
             {
-            "Name" = "8:Inventario Ropa"
+            "Name" = "8:Inventario Base"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_23B061F7AAD2454C9A86739A6067DE70"
+            "Target" = "8:_11CC1B8E82FB484B96B05E982C8382A9"
             "Folder" = "8:_873EEADAAE4746FFA61785D0192D2350"
             "WorkingFolder" = "8:_302E40A1127A436EAAC0E03D2777E1EF"
             "Icon" = "8:"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_AFB97E9CF8874791AF014C999D157D25"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_E4E8153F38234070A6CAF4F97B184A89"
             {
-            "Name" = "8:Inventario Ropa"
+            "Name" = "8:Inventario Base"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_23B061F7AAD2454C9A86739A6067DE70"
+            "Target" = "8:_11CC1B8E82FB484B96B05E982C8382A9"
             "Folder" = "8:_8A0563729EB243E89ECF2A861317D5BD"
             "WorkingFolder" = "8:_302E40A1127A436EAAC0E03D2777E1EF"
             "Icon" = "8:"
@@ -720,7 +772,7 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_23B061F7AAD2454C9A86739A6067DE70"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_11CC1B8E82FB484B96B05E982C8382A9"
             {
             "SourcePath" = "8:..\\Inventario_Base\\obj\\Release\\net8.0-windows\\apphost.exe"
             "TargetName" = "8:"
@@ -740,7 +792,7 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
+            "OutputConfiguration" = "8:Release|Any CPU"
             "OutputGroupCanonicalName" = "8:PublishItems"
             "OutputProjectGuid" = "8:{0C621A94-2BC3-43F2-A63A-7B6B3F558B30}"
             "ShowKeyOutput" = "11:TRUE"
