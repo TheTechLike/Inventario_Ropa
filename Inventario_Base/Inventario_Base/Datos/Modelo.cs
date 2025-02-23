@@ -153,4 +153,11 @@ namespace Inventario_Base.Datos
         [JsonPropertyName("rolID")]
         public int RolID { get; set; }
     }
+    internal class MRol
+    {
+        [JsonPropertyName("rolID")]
+        public int RolID { get; set; }
+        [JsonPropertyName("nombre")]
+        public string Nombre { get; set; }
+    }   
 }

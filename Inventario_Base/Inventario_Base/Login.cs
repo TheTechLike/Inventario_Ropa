@@ -1,4 +1,5 @@
 ﻿using Inventario_Base.Datos;
+using Microsoft.IdentityModel.Protocols.Configuration;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,7 +20,7 @@ namespace Inventario_Base
         Consultar consultar = new Consultar();
         public Login(Main principal)
         {
-            
+
 
             InitializeComponent();
             this.main = principal;
@@ -40,7 +41,7 @@ namespace Inventario_Base
             {
                 iniciar.inicio = true;
                 this.Close();
-                
+
                 main.Enabled = true;
                 main.Show();
 
@@ -49,15 +50,17 @@ namespace Inventario_Base
             {
                 var function = new DLogin();
                 var login = await function.GetLogin(mLogin);
-              
-                if (login != "0")
+
+                if (login[0] != "0")
                 {
-                    string userid = login[1].ToString();
-                    var id =await consultar.GetUserid(Convert.ToInt32(userid));
-                    this.main.nombreuser=  id.Select(x=> x.Nombre + " " + x.Apellido).FirstOrDefault();
+                    string userid = login[0].ToString();
+                    string rolid = login[1].ToString();
+                    var id = await consultar.GetUserid(Convert.ToInt32(userid));
+                    this.main.nombreuser = id.Select(x => x.Nombre + " " + x.Apellido).FirstOrDefault();
+                    this.main.rol = Convert.ToInt32(rolid);
                     iniciar.inicio = true;
                     this.Close();
-                   
+
                     main.Enabled = true;
                     main.Show();
                 }
@@ -75,16 +78,16 @@ namespace Inventario_Base
             main.Hide();
             this.Enabled = false;
             Carga carga = new Carga(this);
-           carga.Show();
-           
-            
-            
+            carga.Show();
+
+
+
         }
 
         private void Login_FormClosed(object sender, FormClosedEventArgs e)
         {
 
-            
+
             if (iniciar.inicio == false)
             {
                 Application.Exit();

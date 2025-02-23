@@ -3,6 +3,7 @@ namespace Inventario_Base
     public partial class Main : Form
     {
         public string nombreuser = "";
+        public int rol = 0;
         public Main()
         {
             InitializeComponent();
@@ -14,14 +15,33 @@ namespace Inventario_Base
             Inicio iniciar = new Inicio();
             if (iniciar.inicio == false)
             {
-               
+
                 this.Enabled = false;
                 login.Show();
             }
-           
+
 
         }
-        
+
+        private void Roles(int rol)
+        {
+            switch (rol)
+            {
+                case 2:
+                    agregarUsuarioToolStripMenuItem.Visible = false;
+                    modificarUsuarioToolStripMenuItem.Visible = false;
+                    eliminarUsuarioToolStripMenuItem.Visible = false;
+                    break;
+                case 3:
+                    usuarioToolStripMenuItem.Visible = false;
+                    button3.Enabled = false;
+                    button3.BackColor = Color.Gray;
+                    break;
+                default:
+                    break;
+
+            }
+        }
         private void label2_Click(object sender, EventArgs e)
         {
 
@@ -97,6 +117,23 @@ namespace Inventario_Base
 
                 }
             }
+        }
+
+        private void Main_VisibleChanged(object sender, EventArgs e)
+        {
+            label3.Text = "Bienvenido/a" + " " + nombreuser;
+            Roles(rol);
+        }
+
+        private void agregarUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AgregarU agregarU = new AgregarU();
+            agregarU.Show();
+        }
+
+        private void Main_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

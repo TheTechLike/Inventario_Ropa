@@ -17,6 +17,7 @@ namespace Inventario_Base.Datos
         private static readonly HttpClient client = new HttpClient();
         private string conect = Conexion.conectionstring;
         private string conectlocal = Conexion.conectionstringlocal;
+        public string error = "";
 
         public async Task<string> PostInv(MInventario parametros)
         {
@@ -75,6 +76,23 @@ namespace Inventario_Base.Datos
                     await connection.CloseAsync();
                     return "Inventario Guardado";
                 }
+            }
+        }
+
+        public async Task<bool>PostUser(MUsuario parametros)
+        {
+            var json = JsonSerializer.Serialize(parametros);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await client.PostAsync(conect + "Usuario", content);
+            var result = await response.Content.ReadAsStringAsync();
+            if ( result=="true")
+            {
+                return true;
+            }
+            else
+            {
+                error = result;
+                return false;
             }
         }
     }

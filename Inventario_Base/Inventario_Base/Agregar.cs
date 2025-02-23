@@ -200,10 +200,6 @@ namespace Inventario_Base
 
             comboBox3Resfrech();
             comboBox3.Enabled = true;
-
-
-
-
         }
 
 
