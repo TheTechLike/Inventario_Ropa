@@ -15,8 +15,9 @@ namespace Inventario_Base
 {
     public partial class Eliminar : Form
     {
+        // Instancia de la clase Consultar para realizar consultas a la base de datos
         Consultar consultar = new Consultar();
-        private int ID = 0;
+        private int ID = 0; // Variable para almacenar el ID del objeto seleccionado
 
         public Eliminar()
         {
@@ -31,11 +32,11 @@ namespace Inventario_Base
             // Cambiar el estilo del borde si es necesario (opcional)
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
             splitContainer1.IsSplitterFixed = true;
-
         }
 
         private async void Eliminar_Load(object sender, EventArgs e)
         {
+            // Cargar datos en el DataGridView y en los ComboBox al cargar el formulario
             dataGridView1.DataSource = await consultar.GetInventariou(string.Empty);
             dataGridView1.Refresh();
 
@@ -52,14 +53,14 @@ namespace Inventario_Base
 
         private void button1_Click(object sender, EventArgs e)
         {
+            // Abre el formulario de Marca
             Marca marca = new Marca();
             marca.Show();
         }
 
-
-
         private async void comboBox3Resfrech()
         {
+            // Refresca los datos del ComboBox3 basado en la selección del ComboBox2
             comboBox3.DisplayMember = "Size";
             comboBox3.ValueMember = "SizeID";
             comboBox3.DataSource = await consultar.GetSize(Convert.ToInt32(comboBox2.SelectedValue));
@@ -67,16 +68,13 @@ namespace Inventario_Base
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Al cambiar la selección del ComboBox2, se refresca el ComboBox3
             comboBox3Resfrech();
         }
 
-
-
-
-
         private async void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
-           // LimpiarControles(true);
+            // Maneja la selección de una fila en el DataGridView
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 // Obtener la fila seleccionada
@@ -102,12 +100,9 @@ namespace Inventario_Base
                 var marcas = await consultar.GetMarcas();
                 var tipos = await consultar.GetTipo();
                 var ubicaciones = await consultar.GetUbi();
-
-
                 var marcaID = marcas.Where(m => m.Nombre == marcaTexto)?.First().MarcaID;
                 var tipoID = tipos.Where(t => t.Nombre == tipoTexto)?.First().TipoID;
                 var ubicacionID = ubicaciones.Where(u => u.Pasillo == ubicacionTexto)?.First().UbicacionID;
-
 
                 // Asignar los valores a los controles correspondientes
                 textBox1.Text = nombre;
@@ -121,33 +116,33 @@ namespace Inventario_Base
                 textBox3.Text = precio.ToString();
                 comboBox4.SelectedValue = ubicacionID;
             }
-           // LimpiarControles(false);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            // Cierra el formulario
             this.Close();
         }
 
         private async void button3_Click(object sender, EventArgs e)
         {
+            // Al hacer clic en el botón de eliminar, se confirma la acción y se elimina el inventario
             var function = new Insertar();
             DialogResult result = MessageBox.Show("Seguro que quieres eliminarlo?", "Confirmacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
             if (result == DialogResult.OK)
             {
-
                 try
                 {
+                    // Envía el ID del inventario a eliminar al servidor y procesa la respuesta
                     var response = await function.DeleteInv(ID);
                     var jsonResponse = JsonSerializer.Deserialize<JsonElement>(response);
-
                     bool isSuccess = jsonResponse.GetProperty("response").GetBoolean();
                     string message = jsonResponse.GetProperty("message").GetString();
 
                     if (isSuccess)
                     {
                         MessageBox.Show("Eliminado con éxito");
-                        Eliminar_Load(sender, e);
+                        Eliminar_Load(sender, e); // Recarga los datos en el formulario
                     }
                     else
                     {
@@ -163,15 +158,17 @@ namespace Inventario_Base
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            // Evento vacío para manejar clics en el DataGridView
         }
 
         private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
         {
-
+            // Evento vacío para manejar el pintado del panel1 del SplitContainer
         }
+
         private void LimpiarControles(bool R)
         {
+            // Habilita o deshabilita los controles del formulario
             textBox1.Enabled = R;
             textBox2.Enabled = R;
             textBox3.Enabled = R;

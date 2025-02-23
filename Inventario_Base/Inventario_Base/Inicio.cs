@@ -8,6 +8,7 @@ namespace Inventario_Base
 {
     internal class Inicio
     {
+        // Variable pública que indica si el inicio ha sido completado
         public bool inicio = false;
     }
 }
