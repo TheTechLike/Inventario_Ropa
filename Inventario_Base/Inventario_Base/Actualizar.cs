@@ -15,8 +15,9 @@ namespace Inventario_Base
 {
     public partial class Actualizar : Form
     {
+        // Instancia de la clase Consultar para realizar consultas a la base de datos
         Consultar consultar = new Consultar();
-        private int ID = 0;
+        private int ID = 0; // Variable para almacenar el ID del objeto seleccionado
 
         public Actualizar()
         {
@@ -31,11 +32,11 @@ namespace Inventario_Base
             // Cambiar el estilo del borde si es necesario (opcional)
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
             splitContainer1.IsSplitterFixed = true;
-
         }
 
         private async void Actualizar_Load(object sender, EventArgs e)
         {
+            // Cargar datos en el DataGridView y en los ComboBox al cargar el formulario
             dataGridView1.DataSource = await consultar.GetInventariou(string.Empty);
             dataGridView1.Refresh();
 
@@ -52,17 +53,19 @@ namespace Inventario_Base
 
         private void button1_Click(object sender, EventArgs e)
         {
+            // Abre el formulario de Marca
             Marca marca = new Marca();
             marca.Show();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            // Evento vacío para manejar cambios en la selección del ComboBox1
         }
 
         private async void comboBox3Resfrech()
         {
+            // Refresca los datos del ComboBox3 basado en la selección del ComboBox2
             comboBox3.DisplayMember = "Size";
             comboBox3.ValueMember = "SizeID";
             comboBox3.DataSource = await consultar.GetSize(Convert.ToInt32(comboBox2.SelectedValue));
@@ -70,33 +73,34 @@ namespace Inventario_Base
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Al cambiar la selección del ComboBox2, se refresca el ComboBox3 y se habilita
             comboBox3Resfrech();
             comboBox3.Enabled = true;
         }
 
         private async void comboBox1_DropDown(object sender, EventArgs e)
         {
-
+            // Evento vacío para manejar el despliegue del ComboBox1
         }
 
         private async void comboBox2_DropDown(object sender, EventArgs e)
         {
-
+            // Evento vacío para manejar el despliegue del ComboBox2
         }
 
         private async void comboBox4_DropDown(object sender, EventArgs e)
         {
-
-
+            // Evento vacío para manejar el despliegue del ComboBox4
         }
 
         private void comboBox3_DropDown(object sender, EventArgs e)
         {
-
+            // Evento vacío para manejar el despliegue del ComboBox3
         }
 
         private async void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
+            // Maneja la selección de una fila en el DataGridView
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 // Obtener la fila seleccionada
@@ -123,11 +127,9 @@ namespace Inventario_Base
                 var tipos = await consultar.GetTipo();
                 var ubicaciones = await consultar.GetUbi();
 
-
                 var marcaID = marcas.Where(m => m.Nombre == marcaTexto)?.First().MarcaID;
                 var tipoID = tipos.Where(t => t.Nombre == tipoTexto)?.First().TipoID;
                 var ubicacionID = ubicaciones.Where(u => u.Pasillo == ubicacionTexto)?.First().UbicacionID;
-
 
                 // Asignar los valores a los controles correspondientes
                 textBox1.Text = nombre;
@@ -145,17 +147,20 @@ namespace Inventario_Base
 
         private void button2_Click(object sender, EventArgs e)
         {
+            // Cierra el formulario
             this.Close();
         }
 
         private async void button3_Click(object sender, EventArgs e)
         {
+            // Al hacer clic en el botón de actualizar, se confirma la acción y se actualiza el inventario
             var function = new Insertar();
             DialogResult result = MessageBox.Show("Seguro que quieres atualizarlo?", "Confirmacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
             try
             {
                 if (result == DialogResult.OK)
                 {
+                    // Crea un nuevo objeto de inventario con los datos ingresados
                     var minventario = new MInventario
                     {
                         ObjetoID = ID,
@@ -171,16 +176,16 @@ namespace Inventario_Base
 
                     try
                     {
+                        // Envía el objeto de inventario al servidor y procesa la respuesta
                         var response = await function.PutInv(minventario);
                         var jsonResponse = JsonSerializer.Deserialize<JsonElement>(response);
-
                         bool isSuccess = jsonResponse.GetProperty("response").GetBoolean();
                         string message = jsonResponse.GetProperty("message").GetString();
 
                         if (isSuccess)
                         {
                             MessageBox.Show("Actualizado con éxito");
-                            Actualizar_Load(sender, e);
+                            Actualizar_Load(sender, e); // Recarga los datos en el formulario
                         }
                         else
                         {
@@ -189,13 +194,13 @@ namespace Inventario_Base
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message , "ERROR",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                        MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message,"ERROR",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
