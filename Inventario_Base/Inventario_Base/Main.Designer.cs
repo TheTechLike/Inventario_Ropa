@@ -37,8 +37,10 @@
             agregarUsuarioToolStripMenuItem = new ToolStripMenuItem();
             eliminarUsuarioToolStripMenuItem = new ToolStripMenuItem();
             modificarUsuarioToolStripMenuItem = new ToolStripMenuItem();
+            buscarUsuarioToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1 = new MenuStrip();
             panel1 = new Panel();
+            label3 = new Label();
             label1 = new Label();
             label2 = new Label();
             button1 = new Button();
@@ -81,7 +83,7 @@
             // 
             // usuarioToolStripMenuItem
             // 
-            usuarioToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { agregarUsuarioToolStripMenuItem, eliminarUsuarioToolStripMenuItem, modificarUsuarioToolStripMenuItem });
+            usuarioToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { agregarUsuarioToolStripMenuItem, eliminarUsuarioToolStripMenuItem, modificarUsuarioToolStripMenuItem, buscarUsuarioToolStripMenuItem });
             usuarioToolStripMenuItem.Name = "usuarioToolStripMenuItem";
             usuarioToolStripMenuItem.Size = new Size(59, 20);
             usuarioToolStripMenuItem.Text = "Usuario";
@@ -91,6 +93,7 @@
             agregarUsuarioToolStripMenuItem.Name = "agregarUsuarioToolStripMenuItem";
             agregarUsuarioToolStripMenuItem.Size = new Size(168, 22);
             agregarUsuarioToolStripMenuItem.Text = "Agregar Usuario";
+            agregarUsuarioToolStripMenuItem.Click += agregarUsuarioToolStripMenuItem_Click;
             // 
             // eliminarUsuarioToolStripMenuItem
             // 
@@ -104,6 +107,12 @@
             modificarUsuarioToolStripMenuItem.Size = new Size(168, 22);
             modificarUsuarioToolStripMenuItem.Text = "Modificar Usuario";
             // 
+            // buscarUsuarioToolStripMenuItem
+            // 
+            buscarUsuarioToolStripMenuItem.Name = "buscarUsuarioToolStripMenuItem";
+            buscarUsuarioToolStripMenuItem.Size = new Size(168, 22);
+            buscarUsuarioToolStripMenuItem.Text = "Buscar Usuario";
+            // 
             // menuStrip1
             // 
             menuStrip1.Items.AddRange(new ToolStripItem[] { sistemaToolStripMenuItem, usuarioToolStripMenuItem });
@@ -116,6 +125,7 @@
             // panel1
             // 
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(label3);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(label2);
             panel1.Dock = DockStyle.Top;
@@ -123,6 +133,17 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1808, 178);
             panel1.TabIndex = 5;
+            // 
+            // label3
+            // 
+            label3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 12F);
+            label3.Location = new Point(1420, 78);
+            label3.Name = "label3";
+            label3.Size = new Size(105, 21);
+            label3.TabIndex = 10;
+            label3.Text = "Bienvenido/a ";
             // 
             // label1
             // 
@@ -273,8 +294,10 @@
             Name = "Main";
             Text = "Inventario TechLike";
             WindowState = FormWindowState.Maximized;
+            FormClosed += Main_FormClosed;
             Load += Main_Load;
             SizeChanged += Main_SizeChanged;
+            VisibleChanged += Main_VisibleChanged;
             ((System.ComponentModel.ISupportInitialize)marcaBindingSource).EndInit();
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
@@ -308,5 +331,7 @@
         private Panel panel2;
         private Panel panel3;
         private TableLayoutPanel tableLayoutPanel1;
+        private Label label3;
+        private ToolStripMenuItem buscarUsuarioToolStripMenuItem;
     }
 }

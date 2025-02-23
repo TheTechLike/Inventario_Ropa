@@ -60,12 +60,14 @@ namespace Inventario_Base.Datos
 
             return encryptedToken;
         }
-        public async Task<string> GetLogin(MLogin parameters)
+        public async Task<string[]> GetLogin(MLogin parameters)
         {
-            
-            
-                // Encriptar la contraseña antes de enviar
-                parameters.Password = encriptar(parameters.Password);
+            string[] result = new string[2];
+            result[0] = "0";
+            result[1] = "0";
+
+            // Encriptar la contraseña antes de enviar
+            parameters.Password = encriptar(parameters.Password);
 
                 // Serializar los parámetros a JSON
                 string jsonBody = JsonSerializer.Serialize(parameters);
@@ -86,12 +88,14 @@ namespace Inventario_Base.Datos
                     if (responseObject != null && responseObject.ContainsKey("user"))
                     {
                         // Devolver el valor del campo "user"
-                        return responseObject["user"]?.ToString() ?? "0";
+                        result[0] = responseObject["user"]?.ToString() ?? "0";
+                        result[1] = responseObject["rol"]?.ToString() ?? "0";
+                        return result;
                     }
 
-                    return "0";
+                    return result;
                 }
-                return "0";
+                return result;
             }
             catch
             {
@@ -99,27 +103,33 @@ namespace Inventario_Base.Datos
             }
         }
 
-        private string GetLoginlcl(MLogin parameters)
+        private string[] GetLoginlcl(MLogin parameters)
         {
 
             using (SqlConnection cn = new SqlConnection(conectlocal))
             {
+                string[] result = new string[2];
+                result[0] = "0";
+                result[1] = "0";
                 cn.Open();
 
-                string sql = "SELECT * FROM Usuario WHERE usuario = @user AND Contraseña = @password";
+                string sql = "SELECT id,rolid FROM Usuario WHERE usuario = @user AND Contraseña = @password";
                 SqlCommand cmd = new SqlCommand(sql, cn);
                 cmd.Parameters.AddWithValue("@user", parameters.User);
                 cmd.Parameters.AddWithValue("@password", parameters.Password);
                 SqlDataReader dr = cmd.ExecuteReader();
                 if (dr.Read())
                 {
-                    return dr[0].ToString();
+                    result[0] = (string)dr[0];
+                    result[1] = (string)dr[1];
+                    return result;
                 }
                 cn.Close();
-                return "0";
+                return result;
                 
             }
         }
+
 
     }
 }

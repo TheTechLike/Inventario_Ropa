@@ -170,7 +170,14 @@ namespace Inventario_Base.Datos
             return list;
         }
 
-
+        public async Task <List<MUsuario>> GetUserid(int ID)
+        {
+            HttpResponseMessage response = await client.GetAsync(conect + "Usuario" + "/" + ID);
+            response.EnsureSuccessStatusCode();
+            string responsebody = await response.Content.ReadAsStringAsync();
+            List<MUsuario> list = JsonSerializer.Deserialize<List<MUsuario>>(responsebody);
+            return list;
+        }
 
     }
 }
