@@ -48,6 +48,7 @@
             panel2 = new Panel();
             tableLayoutPanel1 = new TableLayoutPanel();
             panel3 = new Panel();
+            label3 = new Label();
             ((System.ComponentModel.ISupportInitialize)marcaBindingSource).BeginInit();
             menuStrip1.SuspendLayout();
             panel1.SuspendLayout();
@@ -116,6 +117,7 @@
             // panel1
             // 
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(label3);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(label2);
             panel1.Dock = DockStyle.Top;
@@ -258,6 +260,17 @@
             panel3.Size = new Size(1536, 740);
             panel3.TabIndex = 12;
             // 
+            // label3
+            // 
+            label3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 12F);
+            label3.Location = new Point(1420, 78);
+            label3.Name = "label3";
+            label3.Size = new Size(105, 21);
+            label3.TabIndex = 10;
+            label3.Text = "Bienvenido/a ";
+            // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -308,5 +321,6 @@
         private Panel panel2;
         private Panel panel3;
         private TableLayoutPanel tableLayoutPanel1;
+        private Label label3;
     }
 }

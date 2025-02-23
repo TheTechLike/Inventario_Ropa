@@ -82,7 +82,7 @@ namespace Inventario_Base
                     if (result == DialogResult.Cancel)
                     {
                         conectadolcl = 2; // solo api
-                        this.main.Close();
+                        Application.Exit();
                     }
                     else
                     {

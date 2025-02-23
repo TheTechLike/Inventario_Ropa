@@ -2,6 +2,7 @@ namespace Inventario_Base
 {
     public partial class Main : Form
     {
+        public string nombreuser = "";
         public Main()
         {
             InitializeComponent();
@@ -17,13 +18,15 @@ namespace Inventario_Base
                 this.Enabled = false;
                 login.Show();
             }
+           
 
         }
-
+        
         private void label2_Click(object sender, EventArgs e)
         {
 
         }
+
 
         private void button1_Click(object sender, EventArgs e)
         {

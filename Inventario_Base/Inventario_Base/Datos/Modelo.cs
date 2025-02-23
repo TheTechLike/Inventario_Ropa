@@ -129,4 +129,28 @@ namespace Inventario_Base.Datos
         [JsonPropertyName("fechaModificacion")]
         public DateTime? FechaModificacion { get; set; }
     }
+    internal class MUsuario
+    {
+        [JsonPropertyName("id")]
+        public int ID { get; set; }
+        [JsonPropertyName("nombre")]
+        public string Nombre { get; set; }
+        [JsonPropertyName("apellido")]
+        public string Apellido { get; set; }
+        [JsonPropertyName("numero")]
+        public string Numero { get; set; }
+        [JsonPropertyName("correo")]
+        public string Correo { get; set; }
+        [JsonPropertyName("usuario")]
+        public string Usuario { get; set; }
+        [JsonPropertyName("contraseña")]
+        [PasswordPropertyText]
+        public string Contraseña { get; set; }
+        [JsonPropertyName("fechaCreacion")]
+        public DateTime FechaCreacion { get; set; }
+        [JsonPropertyName("fechaActualizacion")]
+        public DateTime? FechaActualizacion { get; set; }
+        [JsonPropertyName("rolID")]
+        public int RolID { get; set; }
+    }
 }

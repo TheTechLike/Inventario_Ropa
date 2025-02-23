@@ -16,6 +16,7 @@ namespace Inventario_Base
     {
         private Main main;
         Inicio iniciar = new Inicio();
+        Consultar consultar = new Consultar();
         public Login(Main principal)
         {
             
@@ -47,8 +48,13 @@ namespace Inventario_Base
             else if (mLogin.User != "admin")
             {
                 var function = new DLogin();
-                if (await function.GetLogin(mLogin) != "0")
+                var login = await function.GetLogin(mLogin);
+              
+                if (login != "0")
                 {
+                    string userid = login[1].ToString();
+                    var id =await consultar.GetUserid(Convert.ToInt32(userid));
+                    this.main.nombreuser=  id.Select(x=> x.Nombre + " " + x.Apellido).FirstOrDefault();
                     iniciar.inicio = true;
                     this.Close();
                    
