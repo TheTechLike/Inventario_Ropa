@@ -1,0 +1,8 @@
+C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\obj\Release\net8.0-windows\Inventario_Base.csproj.AssemblyReference.cache
+C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\obj\Release\net8.0-windows\Inventario_Base.Carga.resources
+C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\obj\Release\net8.0-windows\Inventario_Base.csproj.GenerateResource.cache
+C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\obj\Release\net8.0-windows\Inventario_Base.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\obj\Release\net8.0-windows\Inventario_Base.AssemblyInfoInputs.cache
+C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\obj\Release\net8.0-windows\Inventario_Base.AssemblyInfo.cs
+C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\obj\Release\net8.0-windows\Inventario_Base.csproj.CoreCompileInputs.cache
+C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\obj\Release\net8.0-windows\Inventario_Base.sourcelink.json

@@ -1,2 +1,2 @@
 # Inventario_Ropa
-InvetarioBase para Ropa
+Invetario Base para Ropa
