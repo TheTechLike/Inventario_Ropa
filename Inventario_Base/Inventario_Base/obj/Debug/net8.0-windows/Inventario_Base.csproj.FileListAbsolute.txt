@@ -1,6 +1,6 @@
-C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\bin\Debug\net8.0-windows\Inventario_Ropa.mdf
 C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\bin\Debug\net8.0-windows\Inventario_Ropa_log.ldf
 C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\bin\Debug\net8.0-windows\Inventario_Base.exe
+C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\bin\Debug\net8.0-windows\Inventario_Ropa.mdf
 C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\bin\Debug\net8.0-windows\Inventario_Base.deps.json
 C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\bin\Debug\net8.0-windows\Inventario_Base.runtimeconfig.json
 C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\bin\Debug\net8.0-windows\Inventario_Base.dll
@@ -50,6 +50,7 @@ C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario
 C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\obj\Debug\net8.0-windows\Inventario_Base.Agregar.resources
 C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\obj\Debug\net8.0-windows\Inventario_Base.AgregarU.resources
 C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\obj\Debug\net8.0-windows\Inventario_Base.Buscar.resources
+C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\obj\Debug\net8.0-windows\Inventario_Base.BuscarU.resources
 C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\obj\Debug\net8.0-windows\Inventario_Base.Carga.resources
 C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\obj\Debug\net8.0-windows\Inventario_Base.Eliminar.resources
 C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\obj\Debug\net8.0-windows\Inventario_Base.Login.resources

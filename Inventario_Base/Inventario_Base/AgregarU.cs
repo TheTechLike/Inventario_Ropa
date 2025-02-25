@@ -67,6 +67,7 @@ namespace Inventario_Base
                     };
                     if (await InsertUsuario(usuario))
                     {
+
                         MessageBox.Show("Usuario Agregado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         userPassword.Close();
                         Close(); // Cierra el formulario actual
@@ -83,7 +84,21 @@ namespace Inventario_Base
         {
             // Inserta el usuario en la base de datos
             var result = await function.PostUser(usuario);
-            return result;
+            bool result2 = true;
+            if (checkBox1.Checked)
+            {
+                // Si el usuario es local
+                result2 =await function.PostUserlcl(usuario);
+            }
+            if (result && result2)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -42,6 +42,7 @@
             label5 = new Label();
             label3 = new Label();
             button2 = new Button();
+            checkBox1 = new CheckBox();
             SuspendLayout();
             // 
             // button1
@@ -179,11 +180,22 @@
             button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
+            // checkBox1
+            // 
+            checkBox1.AutoSize = true;
+            checkBox1.Location = new Point(17, 464);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(136, 25);
+            checkBox1.TabIndex = 5;
+            checkBox1.Text = "Usuario Local";
+            checkBox1.UseVisualStyleBackColor = true;
+            // 
             // AgregarU
             // 
             AutoScaleDimensions = new SizeF(10F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(751, 715);
+            Controls.Add(checkBox1);
             Controls.Add(comboBox1);
             Controls.Add(maskedTextBox1);
             Controls.Add(label3);
@@ -223,5 +235,6 @@
         private Label label5;
         private Label label3;
         private Button button2;
+        private CheckBox checkBox1;
     }
 }
