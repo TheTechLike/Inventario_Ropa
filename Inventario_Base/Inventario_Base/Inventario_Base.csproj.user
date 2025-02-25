@@ -16,6 +16,9 @@
     <Compile Update="Buscar.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="BuscarU.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Carga.cs">
       <SubType>Form</SubType>
     </Compile>

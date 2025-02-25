@@ -1,10 +1,12 @@
+using Microsoft.VisualBasic;
+
 namespace Inventario_Base
 {
     public partial class Main : Form
     {
         public string nombreuser = ""; // Almacena el nombre del usuario
         public int rol = 0; // Almacena el rol del usuario
-
+        public int state = 0; // Almacena el estado de la conexión
         public Main()
         {
             InitializeComponent(); // Inicializa los componentes del formulario
@@ -42,6 +44,26 @@ namespace Inventario_Base
                     break;
                 default:
                     break;
+            }
+            switch (state)
+            {
+                case 3:
+                    agregarUsuarioToolStripMenuItem.Enabled = false;
+                    agregarUsuarioToolStripMenuItem.BackColor = Color.Gray;
+                    modificarUsuarioToolStripMenuItem.Enabled = false;
+                    modificarUsuarioToolStripMenuItem.BackColor = Color.Gray;
+                    eliminarUsuarioToolStripMenuItem.Enabled = false;
+                    eliminarUsuarioToolStripMenuItem.BackColor = Color.Gray;
+                    button3.Enabled = false;
+                    button3.BackColor = Color.Gray;
+                    button4.Enabled = false;
+                    button4.BackColor = Color.Gray;
+                    button1.Enabled = false;
+                    button1.BackColor = Color.Gray;
+                    break;
+                default:
+                    break;
+
             }
         }
 
@@ -142,6 +164,17 @@ namespace Inventario_Base
         {
             // Evento que se ejecuta al cerrar el formulario
             Application.Exit(); // Cierra la aplicación
+        }
+
+        private void buscarUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            BuscarU buscarU = new BuscarU();
+            buscarU.Show();
+        }
+
+        private void cerrarSessionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
         }
     }
 }

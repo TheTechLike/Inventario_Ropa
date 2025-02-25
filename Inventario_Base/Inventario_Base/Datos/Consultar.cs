@@ -34,15 +34,30 @@ namespace Inventario_Base.Datos
         }
         public async Task<List<MInventario>> GetInventario()
         {
-           
-            
-                HttpResponseMessage response = await client.GetAsync(conect + "inventario");
+
+
+            HttpResponseMessage response = await client.GetAsync(conect + "inventario");
+            response.EnsureSuccessStatusCode();
+            string responsebody = await response.Content.ReadAsStringAsync();
+            List<MInventario> list = JsonSerializer.Deserialize<List<MInventario>>(responsebody);
+            return list;
+
+
+        }
+        internal async Task<List<MUsuario>> GetUsuario()
+        {
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync(conect + "usuario/all");
                 response.EnsureSuccessStatusCode();
                 string responsebody = await response.Content.ReadAsStringAsync();
-                List<MInventario> list = JsonSerializer.Deserialize<List<MInventario>>(responsebody);
+                List<MUsuario> list = JsonSerializer.Deserialize<List<MUsuario>>(responsebody);
                 return list;
-            
-
+            }
+            catch (Exception)
+            {
+                return await GetUsuariolcl();
+            }
         }
 
         public async Task<List<MMarca>> GetMarcas()
@@ -108,7 +123,7 @@ namespace Inventario_Base.Datos
             return list;
         }
 
-       public async Task< List<MInventariou>> GetInventariolcl(string? buscar = "")
+        private async Task<List<MInventariou>> GetInventariolcl(string? buscar = "")
         {
             List<MInventariou> list = new List<MInventariou>();
             using (SqlConnection cn = new SqlConnection(conectlocal))
@@ -118,9 +133,9 @@ namespace Inventario_Base.Datos
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@buscar", buscar);
-                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    using (SqlDataReader dr = await cmd.ExecuteReaderAsync())
                     {
-                        while (dr.Read())
+                        while (await dr.ReadAsync())
                         {
                             var inv = new MInventariou();
                             inv.ObjetoID = dr.GetInt32(0);
@@ -140,27 +155,27 @@ namespace Inventario_Base.Datos
                         }
                     }
                 }
-               await cn.CloseAsync();
+                await cn.CloseAsync();
             }
             return list;
         }
-        public async  Task<List<MSincronizacion>> GetSincronizacionlcl() 
-        { 
+        public async Task<List<MSincronizacion>> GetSincronizacionlcl()
+        {
             List<MSincronizacion> list = new List<MSincronizacion>();
             using (SqlConnection cn = new SqlConnection(conectlocal))
             {
                 await cn.OpenAsync();
                 using (SqlCommand cmd = new SqlCommand("SELECT * FROM Sincronizacion", cn))
                 {
-                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    using (SqlDataReader dr =  await cmd.ExecuteReaderAsync())
                     {
-                        while (dr.Read())
+                        while (await dr.ReadAsync())
                         {
                             var sinc = new MSincronizacion();
                             sinc.ID = dr.GetInt32(0);
                             sinc.Nombre = dr.GetString(1);
                             sinc.FechaCreada = dr.GetDateTime(2);
-                            sinc.FechaModificacion  = dr.IsDBNull(3) ? (DateTime?)null : dr.GetDateTime(3);
+                            sinc.FechaModificacion = dr.IsDBNull(3) ? (DateTime?)null : dr.GetDateTime(3);
                             list.Add(sinc);
                         }
                     }
@@ -170,7 +185,7 @@ namespace Inventario_Base.Datos
             return list;
         }
 
-        public async Task <List<MUsuario>> GetUserid(int ID)
+        public async Task<List<MUsuario>> GetUserid(int ID)
         {
             HttpResponseMessage response = await client.GetAsync(conect + "Usuario" + "/" + ID);
             response.EnsureSuccessStatusCode();
@@ -179,5 +194,84 @@ namespace Inventario_Base.Datos
             return list;
         }
 
+        public async Task<List<MUsuariou>> GetUser(string? buscar)
+        {
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync(conect + "Usuario?buscar=" + buscar);
+                response.EnsureSuccessStatusCode();
+                string responsebody = await response.Content.ReadAsStringAsync();
+                List<MUsuariou> list = JsonSerializer.Deserialize<List<MUsuariou>>(responsebody);
+                return list;
+            }
+            catch (Exception)
+            {
+                return await GetUserlcl(buscar);
+            }
+
+        }
+
+        private async Task<List<MUsuariou>> GetUserlcl(string? buscar="")
+        {
+            List<MUsuariou> list = new List<MUsuariou>();
+            using (SqlConnection cn = new SqlConnection(conectlocal))
+            {
+                await cn.OpenAsync();
+                using (SqlCommand cmd = new SqlCommand("BuscarUsu", cn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@buscar", buscar);
+                    using (SqlDataReader dr = await cmd.ExecuteReaderAsync())
+                    {
+                        while (await dr.ReadAsync())
+                        {
+                            var user = new MUsuariou();
+                            user.ID = dr.GetInt32(0);
+                            user.Nombre = dr.GetString(1);
+                            user.Apellido = dr.GetString(2);
+                            user.Numero = dr.GetString(3);
+                            user.Correo = dr.GetString(4);
+                            user.Usuario = dr.GetString(5);
+                            user.FechaCreacion = dr.GetDateTime(6);
+                            user.Rol = dr.GetString(7);
+                            list.Add(user);
+                        }
+                    }
+                }
+                await cn.CloseAsync();
+            }
+            return list;
+        }
+        private async Task<List<MUsuario>> GetUsuariolcl()
+        {
+            List<MUsuario> list = new List<MUsuario>();
+            using (SqlConnection cn = new SqlConnection(conectlocal))
+            {
+                await cn.OpenAsync();
+                using (SqlCommand cmd = new SqlCommand("SELECT * FROM Usuario", cn))
+                {
+                    using (SqlDataReader dr = await cmd.ExecuteReaderAsync())
+                    {
+                        while (await dr.ReadAsync())
+                        {
+                            var user = new MUsuario();
+                            user.ID = dr.GetInt32(0);
+                            user.Nombre = dr.GetString(1);
+                            user.Apellido = dr.GetString(2);
+                            user.Numero = dr.GetString(3);
+                            user.Correo = dr.GetString(4);
+                            user.Usuario = dr.GetString(5);
+                            user.Contraseña = dr.GetString(6);
+                            user.FechaCreacion = dr.GetDateTime(7);
+                            user.FechaActualizacion = dr.IsDBNull(8) ? (DateTime?)null : dr.GetDateTime(8);
+                            user.RolID = dr.GetInt32(9);
+                            list.Add(user);
+                        }
+                    }
+                }
+                await cn.CloseAsync();
+            }
+            return list;
+        }
     }
 }

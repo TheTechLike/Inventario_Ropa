@@ -15,9 +15,10 @@ namespace Inventario_Base
 {
     public partial class Login : Form
     {
-        private Main main; // Instancia de la clase Main
+        internal Main main; // Instancia de la clase Main
         Inicio iniciar = new Inicio(); // Instancia de la clase Inicio
         Consultar consultar = new Consultar(); // Instancia de la clase Consultar
+
 
         public Login(Main principal)
         {
@@ -57,8 +58,11 @@ namespace Inventario_Base
                     // Si la autenticación es exitosa, se obtienen los datos del usuario y se inicia la sesión
                     string userid = login[0].ToString();
                     string rolid = login[1].ToString();
-                    var id = await consultar.GetUserid(Convert.ToInt32(userid));
-                    this.main.nombreuser = id.Select(x => x.Nombre + " " + x.Apellido).FirstOrDefault();
+                    if (login[0] != "local")
+                    {
+                        var id = await consultar.GetUserid(Convert.ToInt32(userid));
+                        this.main.nombreuser = id.Select(x => x.Nombre + " " + x.Apellido).FirstOrDefault();
+                    }
                     this.main.rol = Convert.ToInt32(rolid);
                     iniciar.inicio = true;
                     this.Close();
