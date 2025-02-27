@@ -14,7 +14,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Inventario_Base")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< Updated upstream:Inventario_Base/Inventario_Base/obj/Debug/net8.0-windows/win-x64/Inventario_Base.AssemblyInfo.cs
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8bbff2dd29ad7eead6c9a2ed619daabd9591925b")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a025c8a7015ba42424b8c364f2b2862039e9ffd8")]
+>>>>>>> Stashed changes:Inventario_Base/Inventario_Base/obj/Debug/net8.0-windows/Inventario_Base.AssemblyInfo.cs
 [assembly: System.Reflection.AssemblyProductAttribute("Inventario_Base")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Inventario_Base")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

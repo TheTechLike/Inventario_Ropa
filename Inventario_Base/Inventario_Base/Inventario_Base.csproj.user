@@ -31,16 +31,18 @@
     <Compile Update="Main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Marca.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="UserPassword.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
+<<<<<<< Updated upstream
   <ItemGroup>
     <None Update="DataSet1.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
+=======
+  <ItemGroup />
+  <ItemGroup />
+>>>>>>> Stashed changes
 </Project>
