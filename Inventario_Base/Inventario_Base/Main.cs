@@ -174,7 +174,13 @@ namespace Inventario_Base
 
         private void cerrarSessionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Application.Restart();
+           var  Result = MessageBox.Show("Seguro que quieres cerrar la sesión?", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (Result == DialogResult.Yes)
+            {
+                // Cierra la sesión y reinicia la aplicación
+                Application.Restart();
+            }
+           
         }
     }
 }

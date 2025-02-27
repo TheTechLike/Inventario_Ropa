@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             marcaBindingSource = new BindingSource(components);
             sistemaToolStripMenuItem = new ToolStripMenuItem();
             cerrarSessionToolStripMenuItem = new ToolStripMenuItem();
@@ -72,14 +73,14 @@
             // cerrarSessionToolStripMenuItem
             // 
             cerrarSessionToolStripMenuItem.Name = "cerrarSessionToolStripMenuItem";
-            cerrarSessionToolStripMenuItem.Size = new Size(180, 22);
+            cerrarSessionToolStripMenuItem.Size = new Size(148, 22);
             cerrarSessionToolStripMenuItem.Text = "Cerrar Session";
             cerrarSessionToolStripMenuItem.Click += cerrarSessionToolStripMenuItem_Click;
             // 
             // ayudaToolStripMenuItem
             // 
             ayudaToolStripMenuItem.Name = "ayudaToolStripMenuItem";
-            ayudaToolStripMenuItem.Size = new Size(180, 22);
+            ayudaToolStripMenuItem.Size = new Size(148, 22);
             ayudaToolStripMenuItem.Text = "Ayuda";
             // 
             // usuarioToolStripMenuItem
@@ -92,26 +93,26 @@
             // agregarUsuarioToolStripMenuItem
             // 
             agregarUsuarioToolStripMenuItem.Name = "agregarUsuarioToolStripMenuItem";
-            agregarUsuarioToolStripMenuItem.Size = new Size(180, 22);
+            agregarUsuarioToolStripMenuItem.Size = new Size(168, 22);
             agregarUsuarioToolStripMenuItem.Text = "Agregar Usuario";
             agregarUsuarioToolStripMenuItem.Click += agregarUsuarioToolStripMenuItem_Click;
             // 
             // eliminarUsuarioToolStripMenuItem
             // 
             eliminarUsuarioToolStripMenuItem.Name = "eliminarUsuarioToolStripMenuItem";
-            eliminarUsuarioToolStripMenuItem.Size = new Size(180, 22);
+            eliminarUsuarioToolStripMenuItem.Size = new Size(168, 22);
             eliminarUsuarioToolStripMenuItem.Text = "Eliminar Usuario";
             // 
             // modificarUsuarioToolStripMenuItem
             // 
             modificarUsuarioToolStripMenuItem.Name = "modificarUsuarioToolStripMenuItem";
-            modificarUsuarioToolStripMenuItem.Size = new Size(180, 22);
+            modificarUsuarioToolStripMenuItem.Size = new Size(168, 22);
             modificarUsuarioToolStripMenuItem.Text = "Modificar Usuario";
             // 
             // buscarUsuarioToolStripMenuItem
             // 
             buscarUsuarioToolStripMenuItem.Name = "buscarUsuarioToolStripMenuItem";
-            buscarUsuarioToolStripMenuItem.Size = new Size(180, 22);
+            buscarUsuarioToolStripMenuItem.Size = new Size(168, 22);
             buscarUsuarioToolStripMenuItem.Text = "Buscar Usuario";
             buscarUsuarioToolStripMenuItem.Click += buscarUsuarioToolStripMenuItem_Click;
             // 
@@ -292,6 +293,7 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(menuStrip1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
             Name = "Main";
             Text = "Inventario TechLike";

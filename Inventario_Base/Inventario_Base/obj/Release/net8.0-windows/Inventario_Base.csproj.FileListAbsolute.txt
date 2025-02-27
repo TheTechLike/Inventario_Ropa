@@ -1,6 +1,6 @@
-C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\bin\Release\net8.0-windows\Inventario_Ropa.mdf
 C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\bin\Release\net8.0-windows\Inventario_Ropa_log.ldf
 C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\bin\Release\net8.0-windows\Inventario_Base.exe
+C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\bin\Release\net8.0-windows\Inventario_Ropa.mdf
 C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\bin\Release\net8.0-windows\Inventario_Base.deps.json
 C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\bin\Release\net8.0-windows\Inventario_Base.runtimeconfig.json
 C:\Users\gabri\Documentos\TheTechLike\Inventario_Ropa\Inventario_Base\Inventario_Base\bin\Release\net8.0-windows\Inventario_Base.dll

@@ -85,6 +85,10 @@ namespace Inventario_Base
                         conectadolcl = 2; // Solo API
                         Application.Exit();
                     }
+                    else if (result == DialogResult.TryAgain)
+                    {
+                        Application.Restart();
+                    }
                     else
                     {
                         timer1.Start();
@@ -164,7 +168,7 @@ namespace Inventario_Base
                     {
                         Application.Exit();
                     }
-                    else if (result == DialogResult.Retry)
+                    else if(result == DialogResult.TryAgain)
                     {
                         Application.Restart();
                     }
@@ -175,7 +179,7 @@ namespace Inventario_Base
                     {
                         Application.Exit();
                     }
-                    else if (result3 == DialogResult.Retry)
+                    else if (result3 == DialogResult.TryAgain)
                     {
                         Application.Restart();
                     }
