@@ -33,6 +33,7 @@ namespace Inventario_Base
 
         private async void button1_Click(object sender, EventArgs e)
         {
+            pictureBox2.Visible = true; // Muestra el pictureBox2
             // Maneja el evento de clic en el botón de inicio de sesión
             MLogin mLogin = new MLogin();
             mLogin.User = textBox1.Text;
@@ -76,6 +77,12 @@ namespace Inventario_Base
                     MessageBox.Show("Usuario/Contraseña incorrecta");
                 }
             }
+            else
+            {
+                // Si la autenticación falla, se muestra un mensaje de error
+                MessageBox.Show("Usuario/Contraseña incorrecta");
+            }
+            pictureBox2.Visible = false; // Oculta el pictureBox2
         }
 
         private void Login_Load(object sender, EventArgs e)

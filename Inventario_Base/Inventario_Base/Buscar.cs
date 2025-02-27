@@ -43,15 +43,19 @@ namespace Inventario_Base
 
         private async void Buscar_Load(object sender, EventArgs e)
         {
+            pictureBox1.Visible = true; // Mostrar el PictureBox1
             // Al cargar el formulario, se obtienen los datos del inventario y se muestran en el DataGridView
             dataGridView1.DataSource = await consultar.GetInventariou(string.Empty);
             dataGridView1.Refresh();
+            pictureBox1.Visible = false; // Ocultar el PictureBox1
         }
 
         private async void textBox1_TextChanged(object sender, EventArgs e)
         {
+            pictureBox1.Visible = false;
             // Al cambiar el texto en el TextBox1, se filtran los datos del inventario y se muestran en el DataGridView
             dataGridView1.DataSource = await consultar.GetInventariou(textBox1.Text);
+            pictureBox1.Visible = false;
         }
 
         private void button1_Click(object sender, EventArgs e)

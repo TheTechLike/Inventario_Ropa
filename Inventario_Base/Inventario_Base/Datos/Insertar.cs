@@ -38,7 +38,37 @@ namespace Inventario_Base.Datos
         public async Task<string> DeleteInv(int id)
         {
             HttpResponseMessage response = await client.DeleteAsync(conect + "InventarioU/" + id);
-            return await response.Content.ReadAsStringAsync();
+            if(await DeleteInvlcl(id) == "Inventario Eliminado")
+            {
+                return await response.Content.ReadAsStringAsync();
+            }
+            else
+            {
+                return "Error al eliminar el inventario";
+            }
+        }
+
+        private async Task<string> DeleteInvlcl(int id)
+        {
+            using (SqlConnection connection = new SqlConnection(conectlocal))
+            {
+                await connection.OpenAsync();
+                using (SqlCommand command = new SqlCommand("Delete from inventario where ObjetoID = @ObjetoID", connection))
+                {
+                    command.CommandType = System.Data.CommandType.Text;
+                    command.Parameters.AddWithValue("@ObjetoID", id);
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        return ex.Message;
+                    }
+                    await connection.CloseAsync();
+                    return "Inventario Eliminado";
+                }
+            }
         }
 
         public async Task<string> PostInvSinlcl(MInventario parametros, DateTime FechaModificacion)
