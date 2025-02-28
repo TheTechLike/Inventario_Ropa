@@ -174,13 +174,19 @@ namespace Inventario_Base
 
         private void cerrarSessionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           var  Result = MessageBox.Show("Seguro que quieres cerrar la sesión?", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            var Result = MessageBox.Show("Seguro que quieres cerrar la sesión?", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (Result == DialogResult.Yes)
             {
                 // Cierra la sesión y reinicia la aplicación
                 Application.Restart();
             }
-           
+
+        }
+
+        private void modificarUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ActualizarU actualizarU = new ActualizarU();
+            actualizarU.Show();
         }
     }
 }

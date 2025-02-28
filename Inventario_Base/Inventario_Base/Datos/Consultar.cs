@@ -273,5 +273,33 @@ namespace Inventario_Base.Datos
             }
             return list;
         }
+
+        public async Task<bool> GetUsuariolclBD(string user)
+        {
+            var result = false;
+            using (SqlConnection cn = new SqlConnection(conectlocal))
+            {
+                await cn.OpenAsync();
+                using (SqlCommand cmd = new SqlCommand("SELECT * FROM Usuariolc where Usuario = @usuario", cn))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@usuario", user);
+                    if(await cmd.ExecuteScalarAsync() != null)
+                    {
+                        result = true;
+                    }
+
+                }
+                await cn.CloseAsync();
+            }
+            return result;
+        }
+        public async Task<List<MRol>> GetRol() {
+            HttpResponseMessage response = await client.GetAsync(conect + "rol");
+            response.EnsureSuccessStatusCode();
+            string responsebody = await response.Content.ReadAsStringAsync();
+            List<MRol> list = JsonSerializer.Deserialize<List<MRol>>(responsebody);
+            return list;
+        }
     }
 }

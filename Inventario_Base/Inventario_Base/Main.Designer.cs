@@ -93,26 +93,27 @@
             // agregarUsuarioToolStripMenuItem
             // 
             agregarUsuarioToolStripMenuItem.Name = "agregarUsuarioToolStripMenuItem";
-            agregarUsuarioToolStripMenuItem.Size = new Size(168, 22);
+            agregarUsuarioToolStripMenuItem.Size = new Size(180, 22);
             agregarUsuarioToolStripMenuItem.Text = "Agregar Usuario";
             agregarUsuarioToolStripMenuItem.Click += agregarUsuarioToolStripMenuItem_Click;
             // 
             // eliminarUsuarioToolStripMenuItem
             // 
             eliminarUsuarioToolStripMenuItem.Name = "eliminarUsuarioToolStripMenuItem";
-            eliminarUsuarioToolStripMenuItem.Size = new Size(168, 22);
+            eliminarUsuarioToolStripMenuItem.Size = new Size(180, 22);
             eliminarUsuarioToolStripMenuItem.Text = "Eliminar Usuario";
             // 
             // modificarUsuarioToolStripMenuItem
             // 
             modificarUsuarioToolStripMenuItem.Name = "modificarUsuarioToolStripMenuItem";
-            modificarUsuarioToolStripMenuItem.Size = new Size(168, 22);
+            modificarUsuarioToolStripMenuItem.Size = new Size(180, 22);
             modificarUsuarioToolStripMenuItem.Text = "Modificar Usuario";
+            modificarUsuarioToolStripMenuItem.Click += modificarUsuarioToolStripMenuItem_Click;
             // 
             // buscarUsuarioToolStripMenuItem
             // 
             buscarUsuarioToolStripMenuItem.Name = "buscarUsuarioToolStripMenuItem";
-            buscarUsuarioToolStripMenuItem.Size = new Size(168, 22);
+            buscarUsuarioToolStripMenuItem.Size = new Size(180, 22);
             buscarUsuarioToolStripMenuItem.Text = "Buscar Usuario";
             buscarUsuarioToolStripMenuItem.Click += buscarUsuarioToolStripMenuItem_Click;
             // 

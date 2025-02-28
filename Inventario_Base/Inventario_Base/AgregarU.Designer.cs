@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AgregarU));
             button1 = new Button();
             textBox1 = new TextBox();
             textBox2 = new TextBox();
@@ -88,7 +89,7 @@
             maskedTextBox1.Margin = new Padding(4);
             maskedTextBox1.Mask = "0000000000";
             maskedTextBox1.Name = "maskedTextBox1";
-            maskedTextBox1.PromptChar = '-';
+            maskedTextBox1.PromptChar = ' ';
             maskedTextBox1.Size = new Size(116, 29);
             maskedTextBox1.TabIndex = 3;
             // 
@@ -211,6 +212,7 @@
             Controls.Add(button2);
             Controls.Add(button1);
             Font = new Font("Segoe UI Symbol", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4);
             Name = "AgregarU";
             Text = "AgregarU";
