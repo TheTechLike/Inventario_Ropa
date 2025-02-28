@@ -15,6 +15,7 @@ namespace Inventario_Base
     {
         // Instancia de la clase Insertar para realizar operaciones de inserción
         Insertar function = new Insertar();
+        Consultar cn = new Consultar();
 
         public AgregarU()
         {
@@ -26,17 +27,13 @@ namespace Inventario_Base
             // Evento vacío para manejar clics en el label1
         }
 
-        private void AgregarU_Load(object sender, EventArgs e)
+        private async  void AgregarU_Load(object sender, EventArgs e)
         {
             // Al cargar el formulario, se configuran los datos del ComboBox1
             comboBox1.ValueMember = "RolID";
             comboBox1.DisplayMember = "Nombre";
-            comboBox1.DataSource = new List<MRol>
-                {
-                    new MRol { RolID = 1, Nombre = "Administrador" },
-                    new MRol { RolID = 2, Nombre = "Supervisor" },
-                    new MRol { RolID = 3, Nombre = "Empleado" }
-                };
+            comboBox1.DataSource = await cn.GetRol();
+                
         }
 
         private async void button2_Click(object sender, EventArgs e)
