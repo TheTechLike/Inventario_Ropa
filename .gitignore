@@ -1,8 +1,6 @@
-﻿# Ignorar todo
+﻿# Ignorar todo por defecto
 *
 
-# Permitir la carpeta y los archivos dentro de ella
-!Inventario_Base/Instalador_Inventario/
-!Inventario_Base/Instalador_Inventario/Release/Instalador_Inventario.msi
-!Inventario_Base/Instalador_Inventario/Release/setup.exe
-
+# Permitir únicamente estos archivos específicos
+!Instalador_Inventario.msi
+!setup.exe
