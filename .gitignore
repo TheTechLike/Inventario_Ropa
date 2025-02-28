@@ -1,4 +1,8 @@
-﻿################################################################################
-# Este archivo .gitignore ha sido creado automáticamente por Microsoft(R) Visual Studio.
-################################################################################
-/Inventario_Base/.vs
+﻿# Ignorar todo
+*
+
+# Permitir la carpeta y los archivos dentro de ella
+!Inventario_Base/Instalador_Inventario/
+!Inventario_Base/Instalador_Inventario/Release/Instalador_Inventario.msi
+!Inventario_Base/Instalador_Inventario/Release/setup.exe
+
