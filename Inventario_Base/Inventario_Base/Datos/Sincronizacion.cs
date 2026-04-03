@@ -19,7 +19,6 @@ namespace Inventario_Base.Datos
         {
             // Codigo para sincronizar la base de datos
             return await Revision();
-
         }
 
         public async Task<bool> Revision()
