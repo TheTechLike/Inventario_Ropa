@@ -38,7 +38,7 @@ namespace Inventario_Base
             // Evento que se ejecuta en cada tick del timer1
             this.login.Hide(); // Oculta el formulario principal
             progressBar1.Increment(1); // Incrementa el valor de la barra de progreso
-            if (progressBar1.Value == 100 || await SincronizacionDB() == true)
+            if ( await SincronizacionDB() == true)
             {
                 // Si la barra de progreso llega a 100 o la sincronización es exitosa
                 progressBar1.Value = 100;
@@ -51,7 +51,7 @@ namespace Inventario_Base
         private async Task<bool> SincronizacionDB()
         {
             // Método para sincronizar la base de datos
-            string apiUrl = "http://10.0.0.129:1025/api/marca";
+            string apiUrl = "http://10.0.0.29:1025/api/marca";
             string local = Conexion.conectionstringlocal;
             bool canConnect = await CanConnectToApi(apiUrl); // Verifica la conexión a la API
             bool canConnectLocal = CanConnectToLocal(local); // Verifica la conexión a la base de datos local
