@@ -65,8 +65,10 @@ namespace Inventario_Base.Datos
             string[] result = new string[2];
             result[0] = "0";
             result[1] = "0";
-
+            MLogin parameterslcl = new MLogin();
+            parameterslcl.Password = parameters.Password;
             // Encriptar la contraseña antes de enviar
+            parameterslcl.User = parameters.User;
             parameters.Password = encriptar(parameters.Password);
 
                 // Serializar los parámetros a JSON
@@ -97,34 +99,38 @@ namespace Inventario_Base.Datos
                 }
                 return result;
             }
-            catch
+            catch (Exception )
             {
-                return GetLoginlcl(parameters);
+             
+                return await  GetLoginlcl(parameterslcl);
             }
         }
 
-        private string[] GetLoginlcl(MLogin parameters)
+        private async Task< string[]> GetLoginlcl(MLogin parameters)
         {
 
             using (SqlConnection cn = new SqlConnection(conectlocal))
             {
                 string[] result = new string[2];
-                result[0] = "0";
+                result[0] = "local";
                 result[1] = "0";
-                cn.Open();
+               await  cn.OpenAsync();
 
-                string sql = "SELECT id,rolid FROM Usuario WHERE usuario = @user AND Contraseña = @password";
+                string sql = "SELECT id,rolid FROM Usuariolcl WHERE usuario = @user AND Contraseña = @password";
                 SqlCommand cmd = new SqlCommand(sql, cn);
                 cmd.Parameters.AddWithValue("@user", parameters.User);
                 cmd.Parameters.AddWithValue("@password", parameters.Password);
-                SqlDataReader dr = cmd.ExecuteReader();
-                if (dr.Read())
+                SqlDataReader dr = await cmd.ExecuteReaderAsync();
+                if (await dr.ReadAsync())
                 {
-                    result[0] = (string)dr[0];
-                    result[1] = (string)dr[1];
-                    return result;
+                    result[1] = Convert.ToString(dr[1]);
+                    
                 }
-                cn.Close();
+                else
+                {
+                    result[0] = "0";
+                }
+                    await cn.CloseAsync();
                 return result;
                 
             }

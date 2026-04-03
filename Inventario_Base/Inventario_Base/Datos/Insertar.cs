@@ -38,7 +38,37 @@ namespace Inventario_Base.Datos
         public async Task<string> DeleteInv(int id)
         {
             HttpResponseMessage response = await client.DeleteAsync(conect + "InventarioU/" + id);
-            return await response.Content.ReadAsStringAsync();
+            if(await DeleteInvlcl(id) == "Inventario Eliminado")
+            {
+                return await response.Content.ReadAsStringAsync();
+            }
+            else
+            {
+                return "Error al eliminar el inventario";
+            }
+        }
+
+        private async Task<string> DeleteInvlcl(int id)
+        {
+            using (SqlConnection connection = new SqlConnection(conectlocal))
+            {
+                await connection.OpenAsync();
+                using (SqlCommand command = new SqlCommand("Delete from inventario where ObjetoID = @ObjetoID", connection))
+                {
+                    command.CommandType = System.Data.CommandType.Text;
+                    command.Parameters.AddWithValue("@ObjetoID", id);
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        return ex.Message;
+                    }
+                    await connection.CloseAsync();
+                    return "Inventario Eliminado";
+                }
+            }
         }
 
         public async Task<string> PostInvSinlcl(MInventario parametros, DateTime FechaModificacion)
@@ -78,6 +108,38 @@ namespace Inventario_Base.Datos
                 }
             }
         }
+        public async Task<string> PostUsuSinlcl(MUsuario parametros, DateTime FechaModificacion)
+        {
+            using (SqlConnection connection = new SqlConnection(conectlocal))
+            {
+                await connection.OpenAsync();
+                using (SqlCommand command = new SqlCommand("InsertarSinUsu", connection))
+                {
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@ID", parametros.ID);
+                    command.Parameters.AddWithValue("@Nombre", parametros.Nombre);
+                    command.Parameters.AddWithValue("@Apellido", parametros.Apellido);
+                    command.Parameters.AddWithValue("@Telefono", parametros.Numero);
+                    command.Parameters.AddWithValue("@Correo", parametros.Correo);
+                    command.Parameters.AddWithValue("@Usuario", parametros.Usuario); 
+                    command.Parameters.AddWithValue("@Contraseña", parametros.Contraseña);
+                    command.Parameters.AddWithValue("@FechaCreacion", parametros.FechaCreacion);
+                    command.Parameters.AddWithValue("FechaActualizacion", parametros.FechaActualizacion);
+                    command.Parameters.AddWithValue("RolID", parametros.RolID); 
+                    command.Parameters.AddWithValue("@FechaModificacion", FechaModificacion);
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        return ex.Message;
+                    }
+                    await connection.CloseAsync();
+                    return "Usuario Guardado";
+                }
+            }
+        }
 
         public async Task<bool>PostUser(MUsuario parametros)
         {
@@ -93,6 +155,34 @@ namespace Inventario_Base.Datos
             {
                 error = result;
                 return false;
+            }
+        }
+
+        public async Task<bool> PostUserlcl(MUsuario parametros)
+        {
+            parametros.Contraseña = parametros.Nombre.Substring(0, 1).ToUpper() + parametros.Apellido.Substring(0, 1).ToLower() + parametros.Numero.Substring(5, 4)+"@!";
+            using (SqlConnection connection = new SqlConnection(conectlocal))
+            {
+                await connection.OpenAsync();
+                using (SqlCommand command = new SqlCommand("Insertuserlcl", connection))
+                {
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@user", parametros.Usuario);
+                    command.Parameters.AddWithValue("@Password", parametros.Contraseña);
+                    command.Parameters.AddWithValue("@RolID", parametros.RolID);
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        error = ex.Message;
+                        await connection.CloseAsync();
+                        return false;
+                    }
+                    
+                    return true;
+                }
             }
         }
     }

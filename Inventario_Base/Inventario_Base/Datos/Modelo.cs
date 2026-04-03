@@ -159,5 +159,25 @@ namespace Inventario_Base.Datos
         public int RolID { get; set; }
         [JsonPropertyName("nombre")]
         public string Nombre { get; set; }
-    }   
+    }
+
+    internal class MUsuariou
+    {
+        [JsonPropertyName("id")]
+        public int ID { get; set; }
+        [JsonPropertyName("nombre")]
+        public string Nombre { get; set; }
+        [JsonPropertyName("apellido")]
+        public string Apellido { get; set; }
+        [JsonPropertyName("numero")]
+        public string Numero { get; set; }
+        [JsonPropertyName("correo")]
+        public string Correo { get; set; }
+        [JsonPropertyName("usuario")]
+        public string Usuario { get; set; }
+        [JsonPropertyName("fechaCreacion")]
+        public DateTime FechaCreacion { get; set; }
+        [JsonPropertyName("rol")]
+        public string Rol { get; set; }
+    }
 }

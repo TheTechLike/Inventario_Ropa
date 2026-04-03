@@ -36,6 +36,7 @@ namespace Inventario_Base
 
         private async void Eliminar_Load(object sender, EventArgs e)
         {
+            pictureBox1.Visible = true; // Mostrar el PictureBox1
             // Cargar datos en el DataGridView y en los ComboBox al cargar el formulario
             dataGridView1.DataSource = await consultar.GetInventariou(string.Empty);
             dataGridView1.Refresh();
@@ -49,6 +50,7 @@ namespace Inventario_Base
             comboBox4.DisplayMember = "Pasillo";
             comboBox4.ValueMember = "UbicacionID";
             comboBox4.DataSource = await consultar.GetUbi();
+            pictureBox1.Visible = false; // Ocultar el PictureBox1
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -60,10 +62,12 @@ namespace Inventario_Base
 
         private async void comboBox3Resfrech()
         {
+            pictureBox1.Visible = true; // Mostrar el PictureBox1
             // Refresca los datos del ComboBox3 basado en la selección del ComboBox2
             comboBox3.DisplayMember = "Size";
             comboBox3.ValueMember = "SizeID";
             comboBox3.DataSource = await consultar.GetSize(Convert.ToInt32(comboBox2.SelectedValue));
+            pictureBox1.Visible = false; // Ocultar el PictureBox1
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -126,6 +130,7 @@ namespace Inventario_Base
 
         private async void button3_Click(object sender, EventArgs e)
         {
+            pictureBox1.Visible = true; // Mostrar el PictureBox1
             // Al hacer clic en el botón de eliminar, se confirma la acción y se elimina el inventario
             var function = new Insertar();
             DialogResult result = MessageBox.Show("Seguro que quieres eliminarlo?", "Confirmacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
@@ -142,6 +147,7 @@ namespace Inventario_Base
                     if (isSuccess)
                     {
                         MessageBox.Show("Eliminado con éxito");
+
                         Eliminar_Load(sender, e); // Recarga los datos en el formulario
                     }
                     else
@@ -154,6 +160,7 @@ namespace Inventario_Base
                     MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+            pictureBox1.Visible = false; // Ocultar el PictureBox1
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

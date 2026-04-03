@@ -17,13 +17,13 @@ namespace Inventario_Base
 {
     public partial class Carga : Form
     {
-        private Login main; // Instancia de la clase Login
+        private Login login; // Instancia de la clase Login
         private static string errorBD = ""; // Variable para almacenar mensajes de error de la base de datos
 
         public Carga(Login principal)
         {
             InitializeComponent();
-            this.main = principal; // Asigna la instancia principal de Login
+            this.login = principal; // Asigna la instancia principal de Login
         }
 
         public int conectadolcl { get; set; } // Propiedad para indicar el estado de la conexión
@@ -36,9 +36,9 @@ namespace Inventario_Base
         private async void timer1_Tick(object sender, EventArgs e)
         {
             // Evento que se ejecuta en cada tick del timer1
-            this.main.Hide(); // Oculta el formulario principal
+            this.login.Hide(); // Oculta el formulario principal
             progressBar1.Increment(1); // Incrementa el valor de la barra de progreso
-            if (progressBar1.Value == 100 || await SincronizacionDB() == true)
+            if ( await SincronizacionDB() == true)
             {
                 // Si la barra de progreso llega a 100 o la sincronización es exitosa
                 progressBar1.Value = 100;
@@ -51,7 +51,7 @@ namespace Inventario_Base
         private async Task<bool> SincronizacionDB()
         {
             // Método para sincronizar la base de datos
-            string apiUrl = "http://10.0.0.129:1025/api/marca";
+            string apiUrl = "http://10.0.0.29:1025/api/marca";
             string local = Conexion.conectionstringlocal;
             bool canConnect = await CanConnectToApi(apiUrl); // Verifica la conexión a la API
             bool canConnectLocal = CanConnectToLocal(local); // Verifica la conexión a la base de datos local
@@ -84,6 +84,10 @@ namespace Inventario_Base
                     {
                         conectadolcl = 2; // Solo API
                         Application.Exit();
+                    }
+                    else if (result == DialogResult.TryAgain)
+                    {
+                        Application.Restart();
                     }
                     else
                     {
@@ -141,9 +145,9 @@ namespace Inventario_Base
             if (timer2.Interval == 3000)
             {
                 timer2.Stop();
-                this.main.Enabled = true; // Habilita el formulario principal
+                this.login.Enabled = true; // Habilita el formulario principal
                 this.Close(); // Cierra el formulario de carga
-                this.main.Show(); // Muestra el formulario principal
+                this.login.Show(); // Muestra el formulario principal
             }
         }
 
@@ -164,21 +168,22 @@ namespace Inventario_Base
                     {
                         Application.Exit();
                     }
-                    else if (result == DialogResult.Retry)
+                    else if(result == DialogResult.TryAgain)
                     {
                         Application.Restart();
                     }
                     break;
                 case 3:
-                    var result3 = MessageBox.Show("Error al conectar a la base de datos,Solo disponible para consultas o administrador. Por favor verifique con su supervisor", "Advertencia", MessageBoxButtons.CancelTryContinue, MessageBoxIcon.Warning);
+                    var result3 = MessageBox.Show("Error al conectar a la base de datos,Solo disponible para consultas y administrador. Por favor verifique con su supervisor", "Advertencia", MessageBoxButtons.CancelTryContinue, MessageBoxIcon.Warning);
                     if (result3 == DialogResult.Cancel)
                     {
                         Application.Exit();
                     }
-                    else if (result3 == DialogResult.Retry)
+                    else if (result3 == DialogResult.TryAgain)
                     {
                         Application.Restart();
                     }
+                    this.login.main.state = conectadolcl;
                     break;
                 default:
                     break;

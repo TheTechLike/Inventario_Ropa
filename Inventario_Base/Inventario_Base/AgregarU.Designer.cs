@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AgregarU));
             button1 = new Button();
             textBox1 = new TextBox();
             textBox2 = new TextBox();
@@ -42,6 +43,7 @@
             label5 = new Label();
             label3 = new Label();
             button2 = new Button();
+            checkBox1 = new CheckBox();
             SuspendLayout();
             // 
             // button1
@@ -87,7 +89,7 @@
             maskedTextBox1.Margin = new Padding(4);
             maskedTextBox1.Mask = "0000000000";
             maskedTextBox1.Name = "maskedTextBox1";
-            maskedTextBox1.PromptChar = '-';
+            maskedTextBox1.PromptChar = ' ';
             maskedTextBox1.Size = new Size(116, 29);
             maskedTextBox1.TabIndex = 3;
             // 
@@ -179,11 +181,22 @@
             button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
+            // checkBox1
+            // 
+            checkBox1.AutoSize = true;
+            checkBox1.Location = new Point(17, 464);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(136, 25);
+            checkBox1.TabIndex = 5;
+            checkBox1.Text = "Usuario Local";
+            checkBox1.UseVisualStyleBackColor = true;
+            // 
             // AgregarU
             // 
             AutoScaleDimensions = new SizeF(10F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(751, 715);
+            Controls.Add(checkBox1);
             Controls.Add(comboBox1);
             Controls.Add(maskedTextBox1);
             Controls.Add(label3);
@@ -199,6 +212,7 @@
             Controls.Add(button2);
             Controls.Add(button1);
             Font = new Font("Segoe UI Symbol", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4);
             Name = "AgregarU";
             Text = "AgregarU";
@@ -223,5 +237,6 @@
         private Label label5;
         private Label label3;
         private Button button2;
+        private CheckBox checkBox1;
     }
 }

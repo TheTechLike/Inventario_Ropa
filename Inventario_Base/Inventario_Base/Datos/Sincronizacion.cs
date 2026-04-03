@@ -42,13 +42,20 @@ namespace Inventario_Base.Datos
                             switch (item2.Nombre)
                             {
                                 case "Inventario":
-                                    var list = await cn.GetInventario();
-                                    foreach (var item3 in list)
+                                    var listI = await cn.GetInventario();
+                                    foreach (var item3 in listI)
                                     {
                                         result =InsertarInvLCL(item3, item.FechaModificacion ?? DateTime.MinValue).Result;
                                     }
                                     break;
                                 case "Marca":
+                                    break;
+                                case "Usuario":
+                                    var listU = await cn.GetUsuario();
+                                    foreach (var item3 in listU)
+                                    {
+                                        result = InsertarUsuLCL(item3, item.FechaModificacion ?? DateTime.MinValue).Result;
+                                    }
                                     break;
                             }
 
@@ -63,6 +70,19 @@ namespace Inventario_Base.Datos
             try
             {
                 await ins.PostInvSinlcl(parametros,fecha);
+                return true;
+            }
+            catch (Exception e)
+            {
+                Error = e.Message;
+                return false;
+            }
+        }
+        public async Task<bool> InsertarUsuLCL(MUsuario parametros,DateTime fecha)
+        {
+            try
+            {
+                await ins.PostUsuSinlcl(parametros,fecha);
                 return true;
             }
             catch (Exception e)

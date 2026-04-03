@@ -8,9 +8,9 @@ namespace Inventario_Base.Datos
 {
     internal class Conexion
     {
-        public static string conectionstring = "http://10.0.0.129:1025/api/";
+        public static string conectionstring = "http://10.0.0.29:1025/api/";
 
-       public static string conectionstringlocal = GetLocalConnectionString();
+        public static string conectionstringlocal = GetLocalConnectionString();
 
         private static string GetLocalConnectionString()
         {

@@ -44,7 +44,7 @@
       <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
     </None>
     <None Update="Inventario_Ropa.mdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Inventario_Ropa_log.ldf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
