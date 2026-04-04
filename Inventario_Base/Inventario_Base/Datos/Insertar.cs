@@ -38,7 +38,7 @@ namespace Inventario_Base.Datos
         public async Task<string> DeleteInv(int id)
         {
             HttpResponseMessage response = await client.DeleteAsync(conect + "InventarioU/" + id);
-            if(await DeleteInvlcl(id) == "Inventario Eliminado")
+            if (await DeleteInvlcl(id) == "Inventario Eliminado")
             {
                 return await response.Content.ReadAsStringAsync();
             }
@@ -121,11 +121,11 @@ namespace Inventario_Base.Datos
                     command.Parameters.AddWithValue("@Apellido", parametros.Apellido);
                     command.Parameters.AddWithValue("@Telefono", parametros.Numero);
                     command.Parameters.AddWithValue("@Correo", parametros.Correo);
-                    command.Parameters.AddWithValue("@Usuario", parametros.Usuario); 
+                    command.Parameters.AddWithValue("@Usuario", parametros.Usuario);
                     command.Parameters.AddWithValue("@Contraseña", parametros.Contraseña);
                     command.Parameters.AddWithValue("@FechaCreacion", parametros.FechaCreacion);
                     command.Parameters.AddWithValue("FechaActualizacion", parametros.FechaActualizacion);
-                    command.Parameters.AddWithValue("RolID", parametros.RolID); 
+                    command.Parameters.AddWithValue("RolID", parametros.RolID);
                     command.Parameters.AddWithValue("@FechaModificacion", FechaModificacion);
                     try
                     {
@@ -141,13 +141,13 @@ namespace Inventario_Base.Datos
             }
         }
 
-        public async Task<bool>PostUser(MUsuario parametros)
+        public async Task<bool> PostUser(MUsuario parametros)
         {
             var json = JsonSerializer.Serialize(parametros);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             HttpResponseMessage response = await client.PostAsync(conect + "Usuario", content);
             var result = await response.Content.ReadAsStringAsync();
-            if ( result=="true")
+            if (result == "true")
             {
                 return true;
             }
@@ -160,7 +160,7 @@ namespace Inventario_Base.Datos
 
         public async Task<bool> PostUserlcl(MUsuario parametros)
         {
-            parametros.Contraseña = parametros.Nombre.Substring(0, 1).ToUpper() + parametros.Apellido.Substring(0, 1).ToLower() + parametros.Numero.Substring(5, 4)+"@!";
+            parametros.Contraseña = parametros.Nombre.Substring(0, 1).ToUpper() + parametros.Apellido.Substring(0, 1).ToLower() + parametros.Numero.Substring(5, 4) + "@!";
             using (SqlConnection connection = new SqlConnection(conectlocal))
             {
                 await connection.OpenAsync();
@@ -180,9 +180,25 @@ namespace Inventario_Base.Datos
                         await connection.CloseAsync();
                         return false;
                     }
-                    
+
                     return true;
                 }
+            }
+        }
+
+        public async Task<bool> PutUser(MUsuario parametros, bool password)
+        {
+            var json = JsonSerializer.Serialize(parametros);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await client.PutAsync(conect + "Usuario?change="+password, content);
+            var result = await response.Content.ReadAsStringAsync();
+            if (result == "true")
+                return true;
+            else
+            {
+                error = result;
+                return false;
+
             }
         }
     }

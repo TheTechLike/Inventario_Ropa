@@ -32,6 +32,7 @@
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             splitContainer1 = new SplitContainer();
+            checkBox2 = new CheckBox();
             button2 = new Button();
             button1 = new Button();
             checkBox1 = new CheckBox();
@@ -60,6 +61,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            splitContainer1.Panel1.Controls.Add(checkBox2);
             splitContainer1.Panel1.Controls.Add(button2);
             splitContainer1.Panel1.Controls.Add(button1);
             splitContainer1.Panel1.Controls.Add(checkBox1);
@@ -75,9 +77,19 @@
             // 
             splitContainer1.Panel2.Controls.Add(pictureBox1);
             splitContainer1.Panel2.Controls.Add(dataGridView1);
-            splitContainer1.Size = new Size(1029, 630);
-            splitContainer1.SplitterDistance = 240;
+            splitContainer1.Size = new Size(1284, 678);
+            splitContainer1.SplitterDistance = 292;
             splitContainer1.TabIndex = 0;
+            // 
+            // checkBox2
+            // 
+            checkBox2.AutoSize = true;
+            checkBox2.Location = new Point(25, 384);
+            checkBox2.Name = "checkBox2";
+            checkBox2.Size = new Size(187, 25);
+            checkBox2.TabIndex = 10;
+            checkBox2.Text = "Cambio de Contraseña";
+            checkBox2.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
@@ -89,6 +101,7 @@
             button2.TabIndex = 9;
             button2.Text = "Aceptar";
             button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
             // 
             // button1
             // 
@@ -104,7 +117,7 @@
             // checkBox1
             // 
             checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(25, 459);
+            checkBox1.Location = new Point(25, 498);
             checkBox1.Name = "checkBox1";
             checkBox1.Size = new Size(123, 25);
             checkBox1.TabIndex = 7;
@@ -114,9 +127,9 @@
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(25, 391);
+            comboBox1.Location = new Point(25, 436);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(175, 29);
+            comboBox1.Size = new Size(180, 29);
             comboBox1.TabIndex = 6;
             // 
             // textBox5
@@ -125,7 +138,7 @@
             textBox5.Name = "textBox5";
             textBox5.PasswordChar = '*';
             textBox5.PlaceholderText = "Contraseña";
-            textBox5.Size = new Size(175, 29);
+            textBox5.Size = new Size(180, 29);
             textBox5.TabIndex = 5;
             // 
             // textBox4
@@ -133,7 +146,7 @@
             textBox4.Location = new Point(25, 268);
             textBox4.Name = "textBox4";
             textBox4.PlaceholderText = "Usuario";
-            textBox4.Size = new Size(175, 29);
+            textBox4.Size = new Size(180, 29);
             textBox4.TabIndex = 4;
             // 
             // textBox3
@@ -141,7 +154,7 @@
             textBox3.Location = new Point(25, 210);
             textBox3.Name = "textBox3";
             textBox3.PlaceholderText = "Correo";
-            textBox3.Size = new Size(175, 29);
+            textBox3.Size = new Size(180, 29);
             textBox3.TabIndex = 3;
             // 
             // maskedTextBox1
@@ -150,7 +163,7 @@
             maskedTextBox1.Mask = "000-000-0000";
             maskedTextBox1.Name = "maskedTextBox1";
             maskedTextBox1.PromptChar = ' ';
-            maskedTextBox1.Size = new Size(100, 29);
+            maskedTextBox1.Size = new Size(180, 29);
             maskedTextBox1.TabIndex = 2;
             // 
             // textBox2
@@ -158,7 +171,7 @@
             textBox2.Location = new Point(25, 98);
             textBox2.Name = "textBox2";
             textBox2.PlaceholderText = "Apellidos";
-            textBox2.Size = new Size(175, 29);
+            textBox2.Size = new Size(180, 29);
             textBox2.TabIndex = 1;
             // 
             // textBox1
@@ -166,7 +179,7 @@
             textBox1.Location = new Point(25, 42);
             textBox1.Name = "textBox1";
             textBox1.PlaceholderText = "Nombres";
-            textBox1.Size = new Size(175, 29);
+            textBox1.Size = new Size(180, 29);
             textBox1.TabIndex = 0;
             // 
             // pictureBox1
@@ -175,7 +188,7 @@
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(0, 0);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(785, 630);
+            pictureBox1.Size = new Size(988, 678);
             pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
@@ -185,6 +198,8 @@
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            dataGridView1.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = SystemColors.Control;
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold);
@@ -206,7 +221,7 @@
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            dataGridView1.Size = new Size(785, 630);
+            dataGridView1.Size = new Size(988, 678);
             dataGridView1.TabIndex = 0;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
@@ -215,7 +230,8 @@
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1029, 630);
+            AutoSize = true;
+            ClientSize = new Size(1284, 678);
             Controls.Add(splitContainer1);
             Font = new Font("Segoe UI", 12F);
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -248,5 +264,6 @@
         private Button button1;
         private CheckBox checkBox1;
         private PictureBox pictureBox1;
+        private CheckBox checkBox2;
     }
 }
