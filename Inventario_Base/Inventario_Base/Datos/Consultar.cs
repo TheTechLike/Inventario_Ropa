@@ -280,7 +280,7 @@ namespace Inventario_Base.Datos
             using (SqlConnection cn = new SqlConnection(conectlocal))
             {
                 await cn.OpenAsync();
-                using (SqlCommand cmd = new SqlCommand("SELECT * FROM Usuariolc where Usuario = @usuario", cn))
+                using (SqlCommand cmd = new SqlCommand("SELECT * FROM Usuariolcl where Usuario = @usuario", cn))
                 {
                     cmd.CommandType = CommandType.Text;
                     cmd.Parameters.AddWithValue("@usuario", user);

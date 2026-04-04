@@ -145,7 +145,7 @@ namespace Inventario_Base.Datos
         public string Usuario { get; set; }
         [JsonPropertyName("contraseña")]
         [PasswordPropertyText]
-        public string Contraseña { get; set; }
+        public string? Contraseña { get; set; }
         [JsonPropertyName("fechaCreacion")]
         public DateTime FechaCreacion { get; set; }
         [JsonPropertyName("fechaActualizacion")]
