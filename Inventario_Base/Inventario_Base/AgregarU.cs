@@ -27,54 +27,41 @@ namespace Inventario_Base
             // Evento vacío para manejar clics en el label1
         }
 
-        private async  void AgregarU_Load(object sender, EventArgs e)
+        private async void AgregarU_Load(object sender, EventArgs e)
         {
             // Al cargar el formulario, se configuran los datos del ComboBox1
             comboBox1.ValueMember = "RolID";
             comboBox1.DisplayMember = "Nombre";
             comboBox1.DataSource = await cn.GetRol();
-                
+
         }
 
         private async void button2_Click(object sender, EventArgs e)
         {
             // Al hacer clic en el botón de agregar, se solicita al usuario que ingrese su contraseña
-            var result = MessageBox.Show("Ahora el Usuario debe ingresar su contraseña, por favor deje que el usuario coloque su contraseña", "Contraseña", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-            if (result == DialogResult.OK)
+
+            // Crea un nuevo objeto de usuario con los datos ingresados
+            var usuario = new MUsuario
             {
-                UserPassword userPassword = new UserPassword();
-                userPassword.Show();
-                while (userPassword.Visible == true)
-                {
-                    await Task.Delay(1000); // Espera hasta que el formulario de contraseña se cierre
-                }
+                Nombre = textBox1.Text,
+                Apellido = textBox2.Text,
+                Numero = maskedTextBox1.Text,
+                Correo = textBox3.Text,
+                Usuario = textBox4.Text,
+                Contraseña = "Prueba",
+                RolID = Convert.ToInt32(comboBox1.SelectedValue)
+            };
+            if (await InsertUsuario(usuario))
+            {
 
-                if (userPassword.password != "" && userPassword.Visible == false)
-                {
-                    // Crea un nuevo objeto de usuario con los datos ingresados
-                    var usuario = new MUsuario
-                    {
-                        Nombre = textBox1.Text,
-                        Apellido = textBox2.Text,
-                        Numero = maskedTextBox1.Text,
-                        Correo = textBox3.Text,
-                        Usuario = textBox4.Text,
-                        Contraseña = userPassword.password,
-                        RolID = Convert.ToInt32(comboBox1.SelectedValue)
-                    };
-                    if (await InsertUsuario(usuario))
-                    {
-
-                        MessageBox.Show("Usuario Agregado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        userPassword.Close();
-                        Close(); // Cierra el formulario actual
-                    }
-                    else
-                    {
-                        MessageBox.Show("Error al agregar el usuario\n" + "Error: " + function.error, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
+                MessageBox.Show("Usuario Agregado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Close(); // Cierra el formulario actual
             }
+            else
+            {
+                MessageBox.Show("Error al agregar el usuario\n" + "Error: " + function.error, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         private async Task<bool> InsertUsuario(MUsuario usuario)
@@ -85,7 +72,7 @@ namespace Inventario_Base
             if (checkBox1.Checked)
             {
                 // Si el usuario es local
-                result2 =await function.PostUserlcl(usuario);
+                result2 = await function.PostUserlcl(usuario);
             }
             if (result && result2)
             {
@@ -95,7 +82,7 @@ namespace Inventario_Base
             {
                 return false;
             }
-        
+
         }
 
         private void button1_Click(object sender, EventArgs e)

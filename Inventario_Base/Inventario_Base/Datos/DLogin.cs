@@ -62,9 +62,10 @@ namespace Inventario_Base.Datos
         }
         public async Task<string[]> GetLogin(MLogin parameters)
         {
-            string[] result = new string[2];
+            string[] result = new string[3];
             result[0] = "0";
             result[1] = "0";
+            result[2] = "false";
             MLogin parameterslcl = new MLogin();
             parameterslcl.Password = parameters.Password;
             // Encriptar la contraseña antes de enviar
@@ -92,6 +93,7 @@ namespace Inventario_Base.Datos
                         // Devolver el valor del campo "user"
                         result[0] = responseObject["user"]?.ToString() ?? "0";
                         result[1] = responseObject["rol"]?.ToString() ?? "0";
+                        result[2] = responseObject["change"]?.ToString() ?? "false";
                         return result;
                     }
 

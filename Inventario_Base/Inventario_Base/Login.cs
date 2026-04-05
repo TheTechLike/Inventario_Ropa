@@ -18,7 +18,7 @@ namespace Inventario_Base
         internal Main main; // Instancia de la clase Main
         Inicio iniciar = new Inicio(); // Instancia de la clase Inicio
         Consultar consultar = new Consultar(); // Instancia de la clase Consultar
-
+        Insertar insertar = new Insertar(); // Instancia de la clase Insertar
 
         public Login(Main principal)
         {
@@ -59,10 +59,44 @@ namespace Inventario_Base
                     // Si la autenticación es exitosa, se obtienen los datos del usuario y se inicia la sesión
                     string userid = login[0].ToString();
                     string rolid = login[1].ToString();
+                    string changeid = login[2].ToString();
                     if (login[0] != "local")
                     {
                         var id = await consultar.GetUserid(Convert.ToInt32(userid));
                         this.main.nombreuser = id.Select(x => x.Nombre + " " + x.Apellido).FirstOrDefault();
+
+                        if (changeid == "True")
+                        {
+                            var result = MessageBox.Show("Debe de cambiar su contraseña, por favor coloque su contraseña", "Contraseña", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                            if (result == DialogResult.OK)
+                            {
+                                UserPassword userPassword = new UserPassword();
+                                userPassword.Show();
+                                while (userPassword.Visible == true)
+                                {
+                                    await Task.Delay(1000); // Espera hasta que el formulario de contraseña se cierre
+                                }
+                                if (userPassword.password != "" && userPassword.Visible == false)
+                                {
+                                    var userchange = new MUsuario();
+                                    userchange.Nombre = id.FirstOrDefault().Nombre;
+                                    userchange.Apellido = id.FirstOrDefault().Apellido;
+                                    userchange.Numero = id.FirstOrDefault().Numero;
+                                    userchange.Correo = id.FirstOrDefault().Correo;
+                                    userchange.Usuario = id.FirstOrDefault().Usuario;
+                                    userchange.RolID = id.FirstOrDefault().RolID;
+                                    userchange.ID = id.FirstOrDefault().ID;
+                                    userchange.Contraseña = userPassword.password;
+                                    userchange.FechaCreacion = id.FirstOrDefault().FechaCreacion;
+                                    bool changeuser = await insertar.PutUser(userchange, true);
+                                    if(changeuser)
+                                    {
+                                        MessageBox.Show("Contraseña actualizada");
+                                        userPassword.Close();
+                                    }
+                                }
+                            }
+                        }
                     }
                     this.main.rol = Convert.ToInt32(rolid);
                     iniciar.inicio = true;
