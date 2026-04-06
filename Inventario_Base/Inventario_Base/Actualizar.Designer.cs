@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Actualizar));
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             splitContainer1 = new SplitContainer();
             button3 = new Button();
             button2 = new Button();
@@ -74,6 +74,8 @@
             splitContainer1.Panel1.Controls.Add(textBox1);
             splitContainer1.Panel1.Controls.Add(comboBox2);
             splitContainer1.Panel1.Controls.Add(comboBox1);
+            splitContainer1.Panel1.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            splitContainer1.Panel1.Paint += splitContainer1_Panel1_Paint;
             splitContainer1.Panel1MinSize = 10;
             // 
             // splitContainer1.Panel2
@@ -88,31 +90,34 @@
             // 
             // button3
             // 
-            button3.BackColor = Color.PapayaWhip;
-            button3.Location = new Point(302, 558);
+            button3.BackColor = Color.ForestGreen;
+            button3.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            button3.Location = new Point(143, 545);
             button3.Name = "button3";
-            button3.Size = new Size(97, 23);
-            button3.TabIndex = 11;
+            button3.Size = new Size(120, 45);
+            button3.TabIndex = 10;
             button3.Text = "Aceptar";
             button3.UseVisualStyleBackColor = false;
             button3.Click += button3_Click;
             // 
             // button2
             // 
-            button2.BackColor = Color.Red;
-            button2.Location = new Point(154, 558);
+            button2.BackColor = Color.IndianRed;
+            button2.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            button2.Location = new Point(280, 545);
             button2.Name = "button2";
-            button2.Size = new Size(97, 23);
-            button2.TabIndex = 10;
+            button2.Size = new Size(120, 45);
+            button2.TabIndex = 11;
             button2.Text = "Cancelar";
             button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
             // button1
             // 
-            button1.Location = new Point(6, 558);
+            button1.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            button1.Location = new Point(6, 545);
             button1.Name = "button1";
-            button1.Size = new Size(97, 23);
+            button1.Size = new Size(120, 45);
             button1.TabIndex = 9;
             button1.Text = "Agregar Marca";
             button1.UseVisualStyleBackColor = true;
@@ -209,27 +214,27 @@
             // 
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = Color.DarkOrange;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.DarkOrange;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.Location = new Point(0, 0);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Control;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = Color.DarkOrange;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Control;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = Color.DarkOrange;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dataGridView1.RowTemplate.DefaultCellStyle.Font = new Font("Microsoft Sans Serif", 12F);
             dataGridView1.RowTemplate.DefaultCellStyle.SelectionBackColor = Color.DarkOrange;
             dataGridView1.Size = new Size(819, 695);

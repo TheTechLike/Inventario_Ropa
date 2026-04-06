@@ -37,7 +37,6 @@
             button1 = new Button();
             checkBox1 = new CheckBox();
             comboBox1 = new ComboBox();
-            textBox5 = new TextBox();
             textBox4 = new TextBox();
             textBox3 = new TextBox();
             maskedTextBox1 = new MaskedTextBox();
@@ -66,7 +65,6 @@
             splitContainer1.Panel1.Controls.Add(button1);
             splitContainer1.Panel1.Controls.Add(checkBox1);
             splitContainer1.Panel1.Controls.Add(comboBox1);
-            splitContainer1.Panel1.Controls.Add(textBox5);
             splitContainer1.Panel1.Controls.Add(textBox4);
             splitContainer1.Panel1.Controls.Add(textBox3);
             splitContainer1.Panel1.Controls.Add(maskedTextBox1);
@@ -84,7 +82,7 @@
             // checkBox2
             // 
             checkBox2.AutoSize = true;
-            checkBox2.Location = new Point(25, 384);
+            checkBox2.Location = new Point(53, 336);
             checkBox2.Name = "checkBox2";
             checkBox2.Size = new Size(187, 25);
             checkBox2.TabIndex = 10;
@@ -117,7 +115,7 @@
             // checkBox1
             // 
             checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(25, 498);
+            checkBox1.Location = new Point(53, 471);
             checkBox1.Name = "checkBox1";
             checkBox1.Size = new Size(123, 25);
             checkBox1.TabIndex = 7;
@@ -127,23 +125,14 @@
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(25, 436);
+            comboBox1.Location = new Point(53, 408);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(180, 29);
             comboBox1.TabIndex = 6;
             // 
-            // textBox5
-            // 
-            textBox5.Location = new Point(25, 328);
-            textBox5.Name = "textBox5";
-            textBox5.PasswordChar = '*';
-            textBox5.PlaceholderText = "Contraseña";
-            textBox5.Size = new Size(180, 29);
-            textBox5.TabIndex = 5;
-            // 
             // textBox4
             // 
-            textBox4.Location = new Point(25, 268);
+            textBox4.Location = new Point(53, 268);
             textBox4.Name = "textBox4";
             textBox4.PlaceholderText = "Usuario";
             textBox4.Size = new Size(180, 29);
@@ -151,7 +140,7 @@
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(25, 210);
+            textBox3.Location = new Point(53, 210);
             textBox3.Name = "textBox3";
             textBox3.PlaceholderText = "Correo";
             textBox3.Size = new Size(180, 29);
@@ -159,7 +148,7 @@
             // 
             // maskedTextBox1
             // 
-            maskedTextBox1.Location = new Point(25, 153);
+            maskedTextBox1.Location = new Point(53, 153);
             maskedTextBox1.Mask = "000-000-0000";
             maskedTextBox1.Name = "maskedTextBox1";
             maskedTextBox1.PromptChar = ' ';
@@ -168,7 +157,7 @@
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(25, 98);
+            textBox2.Location = new Point(53, 98);
             textBox2.Name = "textBox2";
             textBox2.PlaceholderText = "Apellidos";
             textBox2.Size = new Size(180, 29);
@@ -176,7 +165,7 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(25, 42);
+            textBox1.Location = new Point(53, 42);
             textBox1.Name = "textBox1";
             textBox1.PlaceholderText = "Nombres";
             textBox1.Size = new Size(180, 29);
@@ -257,7 +246,6 @@
         private DataGridView dataGridView1;
         private MaskedTextBox maskedTextBox1;
         private TextBox textBox3;
-        private TextBox textBox5;
         private TextBox textBox4;
         private ComboBox comboBox1;
         private Button button2;

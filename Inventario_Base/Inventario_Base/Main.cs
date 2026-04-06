@@ -23,6 +23,7 @@ namespace Inventario_Base
                 this.Enabled = false;
                 login.Show();
             }
+            Principal();
         }
 
         private void Roles(int rol)
@@ -78,10 +79,8 @@ namespace Inventario_Base
             Agregar agregar = new Agregar();
             agregar.Show();
         }
-
-        private void button2_Click(object sender, EventArgs e)
+        private void Principal()
         {
-            // Abre el formulario de Buscar dentro del panel3
             Buscar inventario = new Buscar();
             if (this.panel3.Controls.Count > 0)
                 this.panel3.Controls.RemoveAt(0);
@@ -90,6 +89,11 @@ namespace Inventario_Base
             this.panel3.Controls.Add(inventario);
             this.panel3.Tag = inventario;
             inventario.Show();
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // Abre el formulario de Buscar dentro del panel3
+            Principal();
         }
 
         private void button4_Click(object sender, EventArgs e)

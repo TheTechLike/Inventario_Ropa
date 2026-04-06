@@ -209,5 +209,10 @@ namespace Inventario_Base
             }
             pictureBox1.Visible = false; // Ocultar el PictureBox1
         }
+
+        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

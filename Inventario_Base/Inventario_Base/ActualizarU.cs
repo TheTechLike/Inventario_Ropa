@@ -71,8 +71,8 @@ namespace Inventario_Base
             user.Numero = maskedTextBox1.Text.Replace("-", "");
             user.Correo = textBox3.Text;
             user.Usuario = textBox4.Text;
-            if(textBox5.Text != "")
-            user.Contraseña = textBox5.Text;
+            if(checkBox2.Checked)
+            user.Contraseña = "Prueba";
             user.RolID = Convert.ToInt32(comboBox1.SelectedValue);
             if(await ActualizarUsuario(user,checkBox2.Checked))
             {

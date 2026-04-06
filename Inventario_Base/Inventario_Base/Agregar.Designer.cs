@@ -187,7 +187,7 @@
             textBox4.Margin = new Padding(4);
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(200, 29);
-            textBox4.TabIndex = 1;
+            textBox4.TabIndex = 6;
             // 
             // textBox5
             // 
@@ -196,7 +196,7 @@
             textBox5.Margin = new Padding(4);
             textBox5.Name = "textBox5";
             textBox5.Size = new Size(200, 29);
-            textBox5.TabIndex = 1;
+            textBox5.TabIndex = 4;
             // 
             // comboBox1
             // 
@@ -204,7 +204,7 @@
             comboBox1.Location = new Point(636, 128);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(200, 29);
-            comboBox1.TabIndex = 3;
+            comboBox1.TabIndex = 2;
             comboBox1.DropDown += comboBox1_DropDown;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
@@ -220,7 +220,7 @@
             comboBox2.Location = new Point(1020, 128);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(200, 29);
-            comboBox2.TabIndex = 4;
+            comboBox2.TabIndex = 3;
             comboBox2.ValueMember = "TipoID";
             comboBox2.DropDown += comboBox2_DropDown;
             comboBox2.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
@@ -241,14 +241,14 @@
             numericUpDown1.Location = new Point(636, 323);
             numericUpDown1.Name = "numericUpDown1";
             numericUpDown1.Size = new Size(200, 29);
-            numericUpDown1.TabIndex = 6;
+            numericUpDown1.TabIndex = 8;
             // 
             // dateTimePicker1
             // 
             dateTimePicker1.Location = new Point(217, 403);
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(313, 29);
-            dateTimePicker1.TabIndex = 7;
+            dateTimePicker1.TabIndex = 10;
             dateTimePicker1.Value = new DateTime(2024, 9, 10, 0, 0, 0, 0);
             // 
             // button1
@@ -256,7 +256,7 @@
             button1.Location = new Point(119, 537);
             button1.Name = "button1";
             button1.Size = new Size(136, 45);
-            button1.TabIndex = 8;
+            button1.TabIndex = 11;
             button1.Text = "Agregar Marca";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
@@ -268,7 +268,7 @@
             button2.Location = new Point(523, 537);
             button2.Name = "button2";
             button2.Size = new Size(136, 45);
-            button2.TabIndex = 8;
+            button2.TabIndex = 12;
             button2.Text = "Aceptar";
             button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
@@ -280,7 +280,7 @@
             button3.Location = new Point(876, 537);
             button3.Name = "button3";
             button3.Size = new Size(136, 45);
-            button3.TabIndex = 8;
+            button3.TabIndex = 13;
             button3.Text = "Cancelar";
             button3.UseVisualStyleBackColor = false;
             button3.Click += button3_Click;
@@ -308,7 +308,7 @@
             textBox2.Margin = new Padding(4);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(200, 29);
-            textBox2.TabIndex = 10;
+            textBox2.TabIndex = 7;
             textBox2.KeyPress += textBox2_KeyPress;
             // 
             // Agregar
